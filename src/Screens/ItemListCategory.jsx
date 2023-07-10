@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import Search from '../Components/Search';
 import productsRaw from '../Data/products.json';
 import { colors } from '../Global/Colors';
+import ProductItem from '../Components/ProductItem';
 
 const ItemListCategory = ({
     category,
@@ -23,12 +24,12 @@ const ItemListCategory = ({
     return (
         <View style={styles.container}>
             <Search
-            onSearch={onSearch}
+                onSearch={onSearch}
             />
             <FlatList
                 data={products}
                 keyExtractor={product => product.id}
-                renderItem={({ item }) => (<View><Text>{item.title}</Text></View>)}
+                renderItem={({ item }) => (ProductItem({ item }))}
                 showsVerticalScrollIndicator={false}
             />
         </View>
@@ -38,7 +39,7 @@ const ItemListCategory = ({
 export default ItemListCategory
 
 const styles = StyleSheet.create({
-    
+
     container: {
         height: '90%',
         backgroundColor: colors.lightOcean,
