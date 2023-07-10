@@ -3,13 +3,15 @@ import { useState } from 'react';
 import Home from './src/Screens/Home';
 import { colors } from './src/Global/Colors';
 import Header from './src/Components/Header';
+import ItemListCategory from './src/Screens/ItemListCategory';
 
 export default function App() {
-  const [categorySelected, setCategorySelected] = useState("");
+  const [categorySelected, setCategorySelected] = useState("smartphones");
   return (
     <View style={styles.container}>
       <Header></Header>
-      <Home setCategorySelected={setCategorySelected} />
+      {/* <Home setCategorySelected={setCategorySelected} /> */}
+      <ItemListCategory category={categorySelected}></ItemListCategory>
     </View>
   );
 }
