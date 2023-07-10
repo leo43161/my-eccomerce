@@ -6,12 +6,19 @@ import Header from './src/Components/Header';
 import ItemListCategory from './src/Screens/ItemListCategory';
 
 export default function App() {
-  const [categorySelected, setCategorySelected] = useState("smartphones");
+  const [categorySelected, setCategorySelected] = useState("");
   return (
     <View style={styles.container}>
       <Header></Header>
-      {/* <Home setCategorySelected={setCategorySelected} /> */}
-      <ItemListCategory category={categorySelected}></ItemListCategory>
+      {
+        categorySelected ?
+          <ItemListCategory
+            category={categorySelected}
+            setCategory={setCategorySelected}
+          />
+          :
+          <Home setCategorySelected={setCategorySelected} />
+      }
     </View>
   );
 }

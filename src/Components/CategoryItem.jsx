@@ -4,7 +4,7 @@ import Card from './Card'
 
 const CategoryItem = ({ item, setCategorySelected }) => {
     return (
-        <Pressable>
+        <Pressable onPress={() => setCategorySelected(item)}>
             <Card>
                 <Text>{item}</Text>
             </Card>
