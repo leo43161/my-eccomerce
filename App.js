@@ -5,11 +5,11 @@ import { colors } from './src/Global/Colors';
 import Header from './src/Components/Header';
 
 export default function App() {
-  const [categorySelected, setCategorySelected] = useState("")
+  const [categorySelected, setCategorySelected] = useState("");
   return (
     <View style={styles.container}>
       <Header></Header>
-      <Home/>
+      <Home setCategorySelected={setCategorySelected} />
     </View>
   );
 }
