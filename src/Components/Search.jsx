@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Pressable } from 'react-native'
+import { StyleSheet, TextInput, View, Pressable, Text } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
 import React, { useState } from 'react'
@@ -11,7 +11,7 @@ const Search = ({
         <View style={styles.searchContainer}>
             <View style={styles.inputContainer}>
                 <Pressable onPress={() => onSearch(keyword)}>
-                    <FontAwesome name="search" size={24} color="black" />
+                    <FontAwesome name="search" size={24} color="white" />
                 </Pressable>
                 <TextInput
                     style={[styles.input, styles.textWhite]}
@@ -21,6 +21,9 @@ const Search = ({
                     placeholderTextColor="#fff"
                 />
             </View>
+            <Pressable style={styles.buttonContainer} onPress={() => onSearch(keyword)}>
+                <Text style={styles.buttonText}>Buscar</Text>
+            </Pressable>
         </View>
     )
 }
@@ -40,10 +43,22 @@ const styles = StyleSheet.create({
         color: "white"
     },
     inputContainer: {
-        width: '100%',
+        width: '80%',
         flexDirection: 'row',
         justifyContent: 'center',
+        paddingHorizontal: 10,
         alignItems: 'center',
+    },
+    buttonContainer: {
+        width: '20%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        paddingHorizontal: 10,
+        alignItems: 'center',
+        color: "white"
+    },
+    buttonText: {
+        color: "white"
     },
     input: {
         flex: 1,
