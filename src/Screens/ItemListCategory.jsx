@@ -43,10 +43,11 @@ const styles = StyleSheet.create({
     container: {
         height: '90%',
         backgroundColor: colors.lightOcean,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     itemContainer: {
-        width: '90%',
-        paddingTop: 12
+        width: '100%',
+        paddingVertical: 10,
+        paddingHorizontal: 15
     }
 })

@@ -4,14 +4,14 @@ import Card from './Card'
 
 const ProductItem = ({ item }) => {
     return (
-        <Pressable style={styles.cardContainer}>
+        <Pressable style={[styles.cardContainer]}>
             <Card additionalStyle={styles.card}>
                 <Image
                     resizeMode='cover'
                     style={styles.image}
                     source={{ uri: item.images[0] }}
                 />
-                <View style={[styles.cardContain, styles.border]}>
+                <View style={[styles.cardContain]}>
                     <View style={[styles.cardContainTop]}>
                         <Text style={styles.textCategory}>{item.rating}</Text>
                         <Text style={styles.textCategory}>{item.brand}</Text>
@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         borderColor: "red"
     },
     cardContainer: {
-        marginBottom: 10
+        marginBottom: 7,
+        padding: 7
     },
     cardContain: {
         padding: 10,
