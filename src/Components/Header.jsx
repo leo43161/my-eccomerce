@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 22,
+        fontFamily: "BROmega",
         textTransform: 'uppercase',
         textAlign: "center",
         flex: 1

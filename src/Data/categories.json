@@ -14,13 +14,13 @@
     {
       "id": 3,
       "title": "Fragrances",
-      "icon": "perfume",
+      "icon": "tint",
       "name": "fragrances"
     },
     {
       "id": 4,
       "title": "Skincare",
-      "icon": "heartbeat",
+      "icon": "eye",
       "name": "skincare"
     },
     {
@@ -98,7 +98,7 @@
     {
       "id": 17,
       "title": "Sunglasses",
-      "icon": "sunglasses",
+      "icon": "glasses",
       "name": "sunglasses"
     },
     {
@@ -116,7 +116,7 @@
     {
       "id": 20,
       "title": "Lighting",
-      "icon": "lightbulb-o",
+      "icon": "lightbulb",
       "name": "lighting"
     }
   ]

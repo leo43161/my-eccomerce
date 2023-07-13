@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Pressable, View } from 'react-native'
 import React from 'react'
 import Card from './Card'
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
 
 const CategoryItem = ({ item, setCategorySelected }) => {
@@ -9,7 +9,7 @@ const CategoryItem = ({ item, setCategorySelected }) => {
         <Pressable onPress={() => setCategorySelected(item.name)} style={styles.cardContainer}>
             <Card additionalStyle={styles.card}>
                 <View style={styles.icon}>
-                    <FontAwesome name={item.icon} size={60} color={colors.blue} />
+                    <FontAwesome5 name={item.icon} size={60} color={colors.blue} />
                 </View>
                 <Text style={styles.textCategory}>{item.title}</Text>
             </Card>
@@ -28,11 +28,15 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 150,
         justifyContent: "center",
+        paddingHorizontal: 15
     },
     textCategory: {
-        fontSize: 20
+        fontSize: 21,
+        fontFamily: "BROmega",
+        textAlign: "center",
+        fontWeight: "bold",
     },
     icon: {
-        marginBottom: 10
+        marginBottom: 10,
     }
 })
