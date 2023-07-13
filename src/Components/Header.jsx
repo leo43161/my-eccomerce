@@ -1,11 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { colors } from '../Global/Colors'
+import { Ionicons } from '@expo/vector-icons';
 
-const Header = () => {
+const Header = ({ categorySelected, setCategorySelected }) => {
+    const goBack = () => {
+        setCategorySelected("")
+    }
     return (
         <View style={styles.containerHeader}>
-            <Text style ={styles.text}>Header</Text>
+            {categorySelected && <Pressable onPress={goBack}>
+                <Ionicons name="arrow-back" size={24} color="black" />
+            </Pressable>}
+            <Text style={styles.text}>{categorySelected ? categorySelected : 'HOME'}</Text>
         </View>
     )
 }
@@ -16,10 +23,16 @@ const styles = StyleSheet.create({
     containerHeader: {
         height: '10%',
         backgroundColor: colors.ocean,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        flexDirection: "row",
+        paddingHorizontal: 20,
+        paddingTop: 20,
     },
     text: {
-        fontSize: 25,
+        fontSize: 22,
+        textTransform: 'uppercase',
+        textAlign: "center",
+        flex: 1
     }
 })

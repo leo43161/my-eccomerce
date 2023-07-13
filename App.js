@@ -9,7 +9,7 @@ export default function App() {
   const [categorySelected, setCategorySelected] = useState("");
   return (
     <View style={styles.container}>
-      <Header></Header>
+      <Header categorySelected={categorySelected} setCategorySelected={setCategorySelected}></Header>
       {
         categorySelected ?
           <ItemListCategory
