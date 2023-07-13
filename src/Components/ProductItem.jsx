@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 import Card from './Card'
+import { colors } from '../Global/Colors'
+import { FontAwesome } from '@expo/vector-icons';
 
 const ProductItem = ({ item }) => {
     return (
@@ -13,14 +15,17 @@ const ProductItem = ({ item }) => {
                 />
                 <View style={[styles.cardContain]}>
                     <View style={[styles.cardContainTop]}>
-                        <Text style={styles.textCategory}>{item.rating}</Text>
+                        <View style={[styles.rating]}>
+                            <FontAwesome name="star" size={17} color="black" />
+                            <Text style={styles.textCategory}>{item.rating}</Text>
+                        </View>
                         <Text style={styles.textCategory}>{item.brand}</Text>
                     </View>
-                    <View style={[styles.cardContainMid]}>
-                        <Text style={styles.textCategory}>{item.title}</Text>
+                    <View>
+                        <Text style={styles.textTitle}>{item.title}</Text>
                     </View>
-                    <View style={styles.cardContainBott}>
-                        <Text style={styles.textCategory}>{item.price}</Text>
+                    <View>
+                        <Text style={styles.textPrice}>${item.price}</Text>
                     </View>
                 </View>
             </Card>
@@ -54,6 +59,22 @@ const styles = StyleSheet.create({
     cardContainTop: {
         flexDirection: "row",
         justifyContent: "space-between"
+    },
+    rating: {
+        flexDirection: "row",
+        alignItems:"center",
+        gap:3
+    },
+    textTitle: {
+        fontSize: 18,
+        color: colors.darkBlue,
+        fontFamily: "BROmega",
+    },
+    textPrice: {
+        fontSize: 20,
+        color: colors.darkBlue,
+        fontFamily: "BROmega",
+        fontWeight: "bold",
     },
     image: {
         height: 120,
