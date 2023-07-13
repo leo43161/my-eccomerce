@@ -1,22 +1,122 @@
 [
-    "smartphones",
-    "laptops",
-    "fragrances",
-    "skincare",
-    "groceries",
-    "home-decoration",
-    "furniture",
-    "tops",
-    "womens-dresses",
-    "womens-shoes",
-    "mens-shirts",
-    "mens-shoes",
-    "mens-watches",
-    "womens-watches",
-    "womens-bags",
-    "womens-jewellery",
-    "sunglasses",
-    "automotive",
-    "motorcycle",
-    "lighting"
-]
+    {
+      "id": 1,
+      "title": "Smartphones",
+      "icon": "mobile",
+      "name": "smartphones"
+    },
+    {
+      "id": 2,
+      "title": "Laptops",
+      "icon": "laptop",
+      "name": "laptops"
+    },
+    {
+      "id": 3,
+      "title": "Fragrances",
+      "icon": "perfume",
+      "name": "fragrances"
+    },
+    {
+      "id": 4,
+      "title": "Skincare",
+      "icon": "heartbeat",
+      "name": "skincare"
+    },
+    {
+      "id": 5,
+      "title": "Groceries",
+      "icon": "shopping-basket",
+      "name": "groceries"
+    },
+    {
+      "id": 6,
+      "title": "Home decoration",
+      "icon": "home",
+      "name": "home-decoration"
+    },
+    {
+      "id": 7,
+      "title": "Furniture",
+      "icon": "couch",
+      "name": "furniture"
+    },
+    {
+      "id": 8,
+      "title": "Tops",
+      "icon": "tshirt",
+      "name": "tops"
+    },
+    {
+      "id": 9,
+      "title": "Womens dresses",
+      "icon": "female",
+      "name": "womens-dresses"
+    },
+    {
+      "id": 10,
+      "title": "Womens shoes",
+      "icon": "female",
+      "name": "womens-shoes"
+    },
+    {
+      "id": 11,
+      "title": "Mens shirts",
+      "icon": "male",
+      "name": "mens-shirts"
+    },
+    {
+      "id": 12,
+      "title": "Mens shoes",
+      "icon": "male",
+      "name": "mens-shoes"
+    },
+    {
+      "id": 13,
+      "title": "Mens watches",
+      "icon": "male",
+      "name": "mens-watches"
+    },
+    {
+      "id": 14,
+      "title": "Womens watches",
+      "icon": "female",
+      "name": "womens-watches"
+    },
+    {
+      "id": 15,
+      "title": "Womens bags",
+      "icon": "female",
+      "name": "womens-bags"
+    },
+    {
+      "id": 16,
+      "title": "Womens jewellery",
+      "icon": "female",
+      "name": "womens-jewellery"
+    },
+    {
+      "id": 17,
+      "title": "Sunglasses",
+      "icon": "sunglasses",
+      "name": "sunglasses"
+    },
+    {
+      "id": 18,
+      "title": "Automotive",
+      "icon": "car",
+      "name": "automotive"
+    },
+    {
+      "id": 19,
+      "title": "Motorcycle",
+      "icon": "motorcycle",
+      "name": "motorcycle"
+    },
+    {
+      "id": 20,
+      "title": "Lighting",
+      "icon": "lightbulb-o",
+      "name": "lighting"
+    }
+  ]
