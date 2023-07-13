@@ -7,6 +7,8 @@ import ItemListCategory from './src/Screens/ItemListCategory';
 
 export default function App() {
   const [categorySelected, setCategorySelected] = useState("");
+  const [productSelected, setProductSelected] = useState("");
+
   return (
     <View style={styles.container}>
       <Header categorySelected={categorySelected} setCategorySelected={setCategorySelected}></Header>

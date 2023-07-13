@@ -27,6 +27,7 @@ const ItemListCategory = ({
                 onSearch={onSearch}
             />
             <FlatList
+                style={styles.itemContainer}
                 data={products}
                 keyExtractor={product => product.id}
                 renderItem={({ item }) => (ProductItem({ item }))}
@@ -39,10 +40,13 @@ const ItemListCategory = ({
 export default ItemListCategory
 
 const styles = StyleSheet.create({
-
     container: {
         height: '90%',
         backgroundColor: colors.lightOcean,
         alignItems: 'center'
+    },
+    itemContainer: {
+        width: '90%',
+        paddingTop: 12
     }
 })
