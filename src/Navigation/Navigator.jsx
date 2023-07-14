@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, View, Text } from 'react-native'
+import { StyleSheet, SafeAreaView, StatusBar } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <NavigationContainer>
                 <Stack.Navigator
                     initialRouteName='Home'
@@ -19,12 +19,8 @@ const Navigator = () => {
                         component={Home}
                     />
                     <Stack.Screen
-                        name='Home'
+                        name='Category'
                         component={ItemListCategory}
-                    />
-                    <Stack.Screen
-                        name='Home'
-                        component={() => <View><Text>ItemList</Text></View>}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
@@ -34,4 +30,9 @@ const Navigator = () => {
 
 export default Navigator
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+      }
+})
