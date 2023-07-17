@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../Screens/Home';
 import ItemListCategory from '../Screens/ItemListCategory';
+import ItemDetails from '../Screens/ItemDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,10 @@ const Navigator = () => {
                         name='Category'
                         component={ItemListCategory}
                     />
+                    <Stack.Screen
+                        name='Product'
+                        component={ItemDetails}
+                    />
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaView>
@@ -34,5 +39,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-      }
+    }
 })

@@ -30,7 +30,7 @@ const ItemListCategory = ({
                 style={styles.itemContainer}
                 data={products}
                 keyExtractor={product => product.id}
-                renderItem={({ item }) => (ProductItem({ item }))}
+                renderItem={({ item }) => (ProductItem({ item, navigation }))}
                 showsVerticalScrollIndicator={false}
             />
         </View>
