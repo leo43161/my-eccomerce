@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../Screens/Home';
 import ItemListCategory from '../Screens/ItemListCategory';
 import ItemDetails from '../Screens/ItemDetails';
+import Header from '../Components/Header';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,18 @@ const Navigator = () => {
             <NavigationContainer>
                 <Stack.Navigator
                     initialRouteName='Home'
+                    screenOptions={
+                        ({ route, navigation }) => (
+                            {
+                                header: () => {
+                                    return <Header
+                                        route={route}
+                                        navigation={navigation}
+                                    />
+                                }
+                            }
+                        )
+                    }
                 >
                     <Stack.Screen
                         name='Home'
@@ -38,6 +51,6 @@ export default Navigator
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     }
 })

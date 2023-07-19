@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 const ProductItem = ({ item, navigation }) => {
     return (
-        <Pressable onPress={() => navigation.navigate('Product', { productId: item.id })} style={[styles.cardContainer]}>
+        <Pressable onPress={() => navigation.navigate('Product', { productId: item.id, title: item.title })} style={[styles.cardContainer]}>
             <Card additionalStyle={styles.card}>
                 <Image
                     resizeMode='cover'
