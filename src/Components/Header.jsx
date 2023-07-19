@@ -1,6 +1,5 @@
-import { Pressable, StyleSheet, Text, View, TextInput } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { colors } from '../Global/Colors'
 import { Ionicons } from '@expo/vector-icons';
 
 const Header = ({ route, navigation }) => {
@@ -35,18 +34,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: "row",
         paddingVertical: 13
-    },
-    containerHeaderSearch: {
-        backgroundColor: "#FFFFFF",
-        flex: 1,
-        flexDirection: "row",
-        paddingVertical: 5
-    },
-    containerSearch: {
-        backgroundColor: "#F8FAF9",
-        flex: 1,
-        flexDirection: "row",
-        paddingVertical: 5
     },
     text: {
         fontSize: 22,

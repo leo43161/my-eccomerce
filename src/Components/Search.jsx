@@ -2,51 +2,66 @@ import { StyleSheet, TextInput, View, Pressable, Text } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
 import React, { useState } from 'react'
-
 const Search = ({
     onSearch
 }) => {
     const [keyword, setKeyword] = useState("");
+    const deleteSearch = () => {
+        setKeyword("");
+        onSearch("");
+    }
     return (
-        <View style={styles.searchContainer}>
-            <View style={styles.inputContainer}>
-                <Pressable onPress={() => onSearch(keyword)}>
-                    <FontAwesome name="search" size={24} color="white" />
+        <View style={styles.container}>
+            <View style={styles.searchContainer}>
+                <View style={styles.inputContainer}>
+                    {!keyword.trim() ?
+                        <Pressable>
+                            <FontAwesome name="search" size={24} color={colors.darkBlue} />
+                        </Pressable>
+                        :
+                        <Pressable onPress={deleteSearch}>
+                            <FontAwesome name="close" size={24} color={colors.darkBlue} />
+                        </Pressable>
+                    }
+                    <TextInput
+                        style={[styles.input]}
+                        placeholder='Search...'
+                        value={keyword}
+                        onChangeText={setKeyword}
+                        placeholderTextColor={colors.darkBlue}
+                    />
+                </View>
+                <Pressable style={styles.buttonContainer} onPress={() => onSearch(keyword)}>
+                    <Text style={styles.buttonText}>Buscar</Text>
                 </Pressable>
-                <TextInput
-                    style={[styles.input, styles.textWhite]}
-                    placeholder='Search...'
-                    value={keyword}
-                    onChangeText={setKeyword}
-                    placeholderTextColor="#fff"
-                />
             </View>
-            <Pressable style={styles.buttonContainer} onPress={() => onSearch(keyword)}>
-                <Text style={styles.buttonText}>Buscar</Text>
-            </Pressable>
         </View>
+
     )
 }
 
 export default Search
 
 const styles = StyleSheet.create({
-    textWhite: {
-        color: 'white',
+    container: {
+        alignItems: 'center',
+        width: '100%',
+        marginTop: 15,
+        paddingHorizontal: 20
     },
     searchContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        backgroundColor: colors.darkBlue,
-        color: "white"
+        borderRadius: 35,
+        backgroundColor: "white",
     },
     inputContainer: {
         width: '80%',
         flexDirection: 'row',
         justifyContent: 'center',
-        paddingHorizontal: 10,
+        paddingHorizontal: 13,
         alignItems: 'center',
     },
     buttonContainer: {
@@ -58,12 +73,12 @@ const styles = StyleSheet.create({
         color: "white"
     },
     buttonText: {
-        color: "white"
+        color: colors.darkBlue
     },
     input: {
         flex: 1,
         padding: 8,
         fontSize: 18,
-        backgroundColor: colors.pink,
+        color: colors.darkBlue
     },
 })

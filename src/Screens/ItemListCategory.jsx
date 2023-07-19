@@ -19,7 +19,7 @@ const ItemListCategory = ({
         setProducts(productsFiltered);
     }, [category, keyword]);
     const onSearch = (input) => {
-        setKeyword(input);
+        setKeyword(input.trim());
     }
     return (
         <View style={styles.container}>
