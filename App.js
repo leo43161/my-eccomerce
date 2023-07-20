@@ -1,15 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { useState } from 'react';
-import Home from './src/Screens/Home';
-import { colors } from './src/Global/Colors';
-import Header from './src/Components/Header';
-import ItemListCategory from './src/Screens/ItemListCategory';
 import { useFonts } from 'expo-font';
+import Navigator from './src/Navigation/Navigator';
 
 export default function App() {
-  const [categorySelected, setCategorySelected] = useState("");
-  const [productSelected, setProductSelected] = useState("");
-
   const [fontsLoaded] = useFonts({
     'BROmega': require('./src/Assets/Fonts/BROmega/BROmega-Regular.ttf')
   });
@@ -20,24 +12,6 @@ export default function App() {
   //Acá se manejará el estado para seleccionar una category y un producto
 
   return (
-    <View style={styles.container}>
-      <Header categorySelected={categorySelected} setCategorySelected={setCategorySelected}></Header>
-      {
-        categorySelected ?
-          <ItemListCategory
-            category={categorySelected}
-            setCategory={setCategorySelected}
-          />
-          :
-          <Home setCategorySelected={setCategorySelected} />
-      }
-    </View>
+    <Navigator/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.lightOcean
-  },
-});

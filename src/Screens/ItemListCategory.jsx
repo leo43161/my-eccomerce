@@ -6,20 +6,20 @@ import { colors } from '../Global/Colors';
 import ProductItem from '../Components/ProductItem';
 
 const ItemListCategory = ({
-    category,
-    setCategory
+    navigation,
+    route
 }) => {
-    const [categorySelected, setCategorySelected] = useState(category);
+    const { category } = route.params;
     const [products, setProducts] = useState([]);
     const [keyword, setKeyword] = useState("");
     const [keywordError, setKeywordError] = useState("");
     useEffect(() => {
         //Lógica de manejo de category
-        const productsFiltered = productsRaw.filter(product => product.category === categorySelected && product.title.toLocaleLowerCase().includes(keyword.toLowerCase()));
+        const productsFiltered = productsRaw.filter(product => product.category === category && product.title.toLocaleLowerCase().includes(keyword.toLowerCase()));
         setProducts(productsFiltered);
-    }, [categorySelected, keyword]);
+    }, [category, keyword]);
     const onSearch = (input) => {
-        setKeyword(input);
+        setKeyword(input.trim());
     }
     return (
         <View style={styles.container}>
@@ -30,7 +30,7 @@ const ItemListCategory = ({
                 style={styles.itemContainer}
                 data={products}
                 keyExtractor={product => product.id}
-                renderItem={({ item }) => (ProductItem({ item }))}
+                renderItem={({ item }) => (ProductItem({ item, navigation }))}
                 showsVerticalScrollIndicator={false}
             />
         </View>
@@ -41,7 +41,7 @@ export default ItemListCategory
 
 const styles = StyleSheet.create({
     container: {
-        height: '90%',
+        flex: 1,
         backgroundColor: colors.lightOcean,
         alignItems: 'center',
     },

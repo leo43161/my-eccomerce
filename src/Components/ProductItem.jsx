@@ -4,9 +4,9 @@ import Card from './Card'
 import { colors } from '../Global/Colors'
 import { FontAwesome } from '@expo/vector-icons';
 
-const ProductItem = ({ item }) => {
+const ProductItem = ({ item, navigation }) => {
     return (
-        <Pressable style={[styles.cardContainer]}>
+        <Pressable onPress={() => navigation.navigate('Product', { productId: item.id, title: item.title })} style={[styles.cardContainer]}>
             <Card additionalStyle={styles.card}>
                 <Image
                     resizeMode='cover'
@@ -17,9 +17,9 @@ const ProductItem = ({ item }) => {
                     <View style={[styles.cardContainTop]}>
                         <View style={[styles.rating]}>
                             <FontAwesome name="star" size={17} color="black" />
-                            <Text style={styles.textCategory}>{item.rating}</Text>
+                            <Text>{item.rating}</Text>
                         </View>
-                        <Text style={styles.textCategory}>{item.brand}</Text>
+                        <Text numberOfLines={1} style={styles.textCategory}>{item.brand}</Text>
                     </View>
                     <View>
                         <Text style={styles.textTitle}>{item.title}</Text>
@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
         justifyContent: "flex-start",
-        height: 110,
+        minHeight: 110,
+        maxHeight: 120,
         overflow: "hidden"
     },
     border: {
@@ -62,13 +63,18 @@ const styles = StyleSheet.create({
     },
     rating: {
         flexDirection: "row",
-        alignItems:"center",
-        gap:3
+        alignItems: "center",
+        gap: 3
     },
     textTitle: {
         fontSize: 18,
         color: colors.darkBlue,
         fontFamily: "BROmega",
+    },
+    textCategory: {
+        maxWidth: "75%",
+        fontFamily: "BROmega",
+        flexShrink: 1
     },
     textPrice: {
         fontSize: 20,

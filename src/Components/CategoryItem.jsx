@@ -4,9 +4,11 @@ import Card from './Card'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
 
-const CategoryItem = ({ item, setCategorySelected }) => {
+const CategoryItem = ({ item, navigation }) => {
     return (
-        <Pressable onPress={() => setCategorySelected(item.name)} style={styles.cardContainer}>
+        <Pressable
+            onPress={() => navigation.navigate('Category', { category: item.name })}
+            style={styles.cardContainer}>
             <Card additionalStyle={styles.card}>
                 <View style={styles.icon}>
                     <FontAwesome5 name={item.icon} size={60} color={colors.blue} />

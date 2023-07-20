@@ -1,18 +1,26 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { colors } from '../Global/Colors'
 import { Ionicons } from '@expo/vector-icons';
 
-const Header = ({ categorySelected, setCategorySelected }) => {
-    const goBack = () => {
-        setCategorySelected("")
+const Header = ({ route, navigation }) => {
+    const routes = {
+        "Home": "Home",
+        "Category": route.params ? route.params.category : "",
+        "Product": route.params ? route.params.title : "",
     }
     return (
         <View style={styles.containerHeader}>
-            {categorySelected && <Pressable onPress={goBack}>
-                <Ionicons name="arrow-back" size={24} color="black" />
-            </Pressable>}
-            <Text style={styles.text}>{categorySelected ? categorySelected : 'HOME'}</Text>
+            {route.name !== 'Home' ?
+                <Pressable style={styles.containerButton} onPress={() => navigation.goBack()}>
+                    <Ionicons name="arrow-back" size={24} color="black" />
+                </Pressable>
+                :
+                <View style={styles.containerButton}></View>
+            }
+            <View style={styles.containerTitle}>
+                <Text style={styles.text}>{routes[route.name]}</Text>
+            </View>
+            <View style={styles.containerThird}></View>
         </View>
     )
 }
@@ -21,19 +29,33 @@ export default Header
 
 const styles = StyleSheet.create({
     containerHeader: {
-        height: '10%',
-        backgroundColor: colors.ocean,
-        justifyContent: 'space-between',
+        backgroundColor: "#FFFFFF",
+        justifyContent: 'center',
         alignItems: 'center',
         flexDirection: "row",
-        paddingHorizontal: 20,
-        paddingTop: 20,
+        paddingVertical: 13
     },
     text: {
         fontSize: 22,
         fontFamily: "BROmega",
-        textTransform: 'uppercase',
-        textAlign: "center",
-        flex: 1
+        textTransform: 'capitalize',
+        textAlign: "center"
+    },
+    containerButton: {
+        borderWidth: 0,
+        flex: 1,
+        borderColor: "red",
+        flexDirection: "row",
+        justifyContent: "center",
+    },
+    containerTitle: {
+        borderWidth: 0,
+        flex: 4,
+        borderColor: "green",
+    },
+    containerThird: {
+        borderWidth: 0,
+        flex: 1,
+        borderColor: "blue"
     }
 })
