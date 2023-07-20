@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         width: '100%',
-        marginTop: 15,
+        paddingTop: 15,
+        paddingBottom: 5,
         paddingHorizontal: 20
     },
     searchContainer: {

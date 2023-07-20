@@ -9,23 +9,46 @@ const ItemDetails = ({
 }) => {
   const { productId } = route.params;
   const [product, setProduct] = useState(null);
-  const [orientation, setOrientation] = useState(null);
+  const [imageProduct, setImageProduct] = useState("");
+  const [imageGalery, setImageGalery] = useState([]);
   useEffect(() => {
     //Encontrar el producto por su id
     const productSelected = allProducts.find(
       (product) => product.id === productId
     );
+    const galleryFiltered = productSelected.images.filter((image) => image !== productSelected.images[0]);
+    setImageGalery(galleryFiltered);
+    setImageProduct(productSelected.images[0]);
     setProduct(productSelected);
   }, [productId]);
+
+  const galleryHandler = (imgSelected) => {
+    const galleryFiltered = product.images.filter((image) => image !== imgSelected);
+    setImageGalery(galleryFiltered);
+    setImageProduct(imgSelected);
+  }
   return (
     <View style={styles.container}>
       {product ?
         <View>
-          <Image
-            resizeMode='cover'
-            style={styles.image}
-            source={{ uri: product.images[0] }}
-          />
+          <View style={styles.imageContainer}>
+            <Image
+              resizeMode='cover'
+              style={styles.image}
+              source={{ uri: imageProduct }}
+            />
+            <View style={styles.galeryContainer}>
+              {imageGalery.map((image, idx) => <>
+                <Pressable key={idx} onPress={() => galleryHandler(image)} style={styles.imageGaleryContainer}>
+                  <Image
+                    resizeMode='cover'
+                    style={styles.imageGalery}
+                    source={{ uri: image }}
+                  />
+                </Pressable>
+              </>)}
+            </View>
+          </View>
           <View style={styles.productContainer}>
             <View style={styles.categoryContainer}>
               <Text style={styles.category}>{product.category}</Text>
@@ -83,6 +106,7 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     paddingHorizontal: 10,
     borderRadius: 20,
+    textTransform: "capitalize",
     color: "white"
   },
   price: {
@@ -96,6 +120,36 @@ const styles = StyleSheet.create({
   },
   productContainer: {
     padding: 20
+  },
+  imageContainer: {
+    width: "100%",
+    position: "relative",
+  },
+  galeryContainer: {
+    position: "absolute",
+    right: 0,
+    paddingRight: 15,
+    paddingTop: 15
+  },
+  imageGalery: {
+    width: 60,
+    height: 60,
+  },
+  imageGaleryContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 15,
+    overflow: "hidden",
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   rating: {
     flexDirection: "row",
@@ -134,13 +188,14 @@ const styles = StyleSheet.create({
   },
   buttonCart: {
     flex: 1,
-    flexDirection:"row",
+    flexDirection: "row",
     justifyContent: 'center',
     alignItems: "center",
     borderWidth: 2,
     borderRadius: 15,
     paddingVertical: 15,
-    paddingVertical: 10
+    paddingVertical: 10,
+    gap: 5
   },
   buttonText: {
     fontSize: 18,
