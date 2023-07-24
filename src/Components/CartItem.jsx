@@ -1,18 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { colors } from "../Global/Colors";
-import { Entypo } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import Card from "./Card";
 
 const CartItem = ({ cartItem }) => {
     return (
-        <View style={styles.card} onPress={() => {}}>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}>{cartItem.title} ({cartItem.quantity})</Text>
-                <Text style={styles.text2}>{cartItem.brand}</Text>
-                <Text style={styles.text2}>${cartItem.price}</Text>
-            </View>
-            <Entypo name="trash" size={30} color="black" />
-        </View>
+        <Pressable onPress={() => { }}>
+            <Card additionalStyle={styles.card}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.title}>{cartItem.title} ({cartItem.quantity})</Text>
+                    <Text style={styles.subtitle}>{cartItem.brand}</Text>
+                    <Text style={styles.subtitle}>${cartItem.price}</Text>
+                </View>
+                <FontAwesome name="trash" size={30} color="black" />
+            </Card>
+        </Pressable>
     );
 };
 
@@ -21,11 +24,8 @@ export default CartItem;
 const styles = StyleSheet.create({
     card: {
         height: 100,
-        backgroundColor: colors.pink,
-        padding: 10,
+        padding: 18,
         margin: 10,
-        borderWidth: 2,
-        borderRadius: 10,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "flex-start",
     },
-    text: {
+    title: {
         fontFamily: "BROmega",
         fontSize: 19,
         color: colors.red,
     },
-    text2: {
+    subtitle: {
         fontFamily: "BROmega",
         fontSize: 14,
         color: colors.peach,

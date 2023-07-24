@@ -5,6 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 const Header = ({ route, navigation }) => {
     const routes = {
         "Home": "Home",
+        "CartScreen": "Cart",
+        "OrdersScreen": "Orders",
         "Category": route.params ? route.params.category : "",
         "Product": route.params ? route.params.title : "",
     }
