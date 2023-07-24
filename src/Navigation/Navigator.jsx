@@ -6,6 +6,7 @@ import ShopStack from './ShopStack';
 import { FontAwesome } from '@expo/vector-icons';
 import CartStack from './CartStack';
 import OrderStack from './OrdersStack';
+import { colors } from '../Global/Colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +20,8 @@ const Navigator = () => {
                         headerShown: false,
                         tabBarShown: false,
                         tabBarStyle: styles.tabBar,
+                        tabBarLabelStyle: styles.tabsText,
+                        tabBarItemStyle: styles.tabsContainer
                     }}
                 >
                     <Tab.Screen
@@ -28,10 +31,12 @@ const Navigator = () => {
                             tabBarIcon: ({ focused }) => {
                                 return (
                                     <View>
-                                        <FontAwesome name="shopping-bag" size={24} color="black" />
+                                        <FontAwesome name="shopping-bag" size={24} color={focused ? colors.blue : colors.darkBlue} />
                                     </View>
                                 )
-                            }
+                            },
+                            tabBarActiveTintColor: colors.blue,
+                            tabBarInactiveTintColor: colors.darkBlue
                         }}
                     />
                     <Tab.Screen
@@ -41,10 +46,12 @@ const Navigator = () => {
                             tabBarIcon: ({ focused }) => {
                                 return (
                                     <View>
-                                        <FontAwesome name="shopping-cart" size={24} color="black" />
+                                        <FontAwesome name="shopping-cart" size={24} color={focused ? colors.blue : colors.darkBlue} />
                                     </View>
                                 )
-                            }
+                            },
+                            tabBarActiveTintColor: colors.blue,
+                            tabBarInactiveTintColor: colors.darkBlue
                         }}
                     />
                     <Tab.Screen
@@ -54,10 +61,12 @@ const Navigator = () => {
                             tabBarIcon: ({ focused }) => {
                                 return (
                                     <View>
-                                        <FontAwesome name="th-list" size={24} color="black" />
+                                        <FontAwesome name="th-list" size={24} color={focused ? colors.blue : colors.darkBlue} />
                                     </View>
                                 )
-                            }
+                            },
+                            tabBarActiveTintColor: colors.blue,
+                            tabBarInactiveTintColor: colors.darkBlue
                         }}
                     />
                 </Tab.Navigator>
@@ -74,6 +83,17 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     },
     tabBar: {
-
+        height: 70,
+        justifyContent: 'center',
+    },
+    tabsContainer: {
+        paddingVertical: 8
+    },
+    tabsText: {
+        fontSize: 12
+    },
+    border: {
+        borderWidth: 1,
+        borderColor: "red"
     }
 })
