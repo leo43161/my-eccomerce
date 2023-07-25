@@ -20,7 +20,7 @@ const Header = ({ route, navigation }) => {
                 <View style={styles.containerButton}></View>
             }
             <View style={styles.containerTitle}>
-                <Text style={styles.text}>{routes[route.name]}</Text>
+                <Text numberOfLines={1} style={[styles.text]}>{routes[route.name]}</Text>
             </View>
             <View style={styles.containerThird}></View>
         </View>
@@ -51,9 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     containerTitle: {
-        borderWidth: 0,
         flex: 4,
-        borderColor: "green",
     },
     containerThird: {
         borderWidth: 0,

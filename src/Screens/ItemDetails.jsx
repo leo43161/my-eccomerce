@@ -33,7 +33,7 @@ const ItemDetails = () => {
               source={{ uri: imageProduct }}
             />
             <View style={styles.galeryContainer}>
-              {imageGalery.map((image, idx) => <>
+              {imageGalery.map((image, idx) =>
                 <Pressable key={idx} onPress={() => galleryHandler(image)} style={styles.imageGaleryContainer}>
                   <Image
                     resizeMode='cover'
@@ -41,7 +41,7 @@ const ItemDetails = () => {
                     source={{ uri: image }}
                   />
                 </Pressable>
-              </>)}
+              )}
             </View>
           </View>
           <View style={styles.productContainer}>
