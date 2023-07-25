@@ -3,11 +3,23 @@ import React from 'react'
 import Card from './Card'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
+import { setCategorySelected } from '../Features/shop/shopSlice';
+import { useDispatch } from 'react-redux';
 
-const CategoryItem = ({ item, navigation }) => {
+const CategoryItem = ({
+    item,
+    navigation
+}) => {
+
+    const dispatch = useDispatch();
+    const onSelectCategory = () => {
+        dispatch(setCategorySelected(item));
+        navigation.navigate('Category', { category: item.name });
+    }
+    
     return (
         <Pressable
-            onPress={() => navigation.navigate('Category', { category: item.name })}
+            onPress={onSelectCategory}
             style={styles.cardContainer}>
             <Card additionalStyle={styles.card}>
                 <View style={styles.icon}>

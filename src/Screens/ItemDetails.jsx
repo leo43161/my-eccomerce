@@ -1,26 +1,21 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import React, { useState, useEffect } from 'react'
-import allProducts from '../Data/products.json'
 import { FontAwesome } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
+import { useSelector } from 'react-redux';
 
-const ItemDetails = ({
-  route
-}) => {
-  const { productId } = route.params;
+const ItemDetails = () => {
+  const productSelected = useSelector(state => state.shopReducer.value.productSelected);
   const [product, setProduct] = useState(null);
   const [imageProduct, setImageProduct] = useState("");
   const [imageGalery, setImageGalery] = useState([]);
   useEffect(() => {
     //Encontrar el producto por su id
-    const productSelected = allProducts.find(
-      (product) => product.id === productId
-    );
     const galleryFiltered = productSelected.images.filter((image) => image !== productSelected.images[0]);
     setImageGalery(galleryFiltered);
     setImageProduct(productSelected.images[0]);
     setProduct(productSelected);
-  }, [productId]);
+  }, [productSelected]);
 
   const galleryHandler = (imgSelected) => {
     const galleryFiltered = product.images.filter((image) => image !== imgSelected);

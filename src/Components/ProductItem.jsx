@@ -3,10 +3,18 @@ import React from 'react'
 import Card from './Card'
 import { colors } from '../Global/Colors'
 import { FontAwesome } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+import { setProductSelected } from '../Features/shop/shopSlice';
 
 const ProductItem = ({ item, navigation }) => {
+    const dispatch = useDispatch();
+    const onSelectProduct = () => {
+        dispatch(setProductSelected(item));
+        navigation.navigate('Product', { title: item.title });
+    }
+
     return (
-        <Pressable onPress={() => navigation.navigate('Product', { productId: item.id, title: item.title })} style={[styles.cardContainer]}>
+        <Pressable onPress={onSelectProduct} style={[styles.cardContainer]}>
             <Card additionalStyle={styles.card}>
                 <Image
                     resizeMode='cover'
