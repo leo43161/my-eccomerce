@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, ScrollView  } from 'react-native';
 import React, { useState, useEffect } from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
@@ -23,7 +23,7 @@ const ItemDetails = () => {
     setImageProduct(imgSelected);
   }
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {product ?
         <View>
           <View style={styles.imageContainer}>
@@ -73,7 +73,7 @@ const ItemDetails = () => {
         </View>
         : null
       }
-    </View>
+    </ScrollView>
   )
 }
 
