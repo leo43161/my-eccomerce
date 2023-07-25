@@ -3,10 +3,12 @@ import { FlatList, StyleSheet, View } from 'react-native'
 import categories from '../Data/categories.json'
 import CategoryItem from '../Components/CategoryItem'
 import { colors } from '../Global/Colors'
+import Counter from '../Components/Counter'
 
 const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <Counter></Counter>
       <FlatList style={{
         paddingHorizontal: 10,
         width: "100%"
