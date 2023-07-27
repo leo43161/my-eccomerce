@@ -1,7 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { FontAwesome } from '@expo/vector-icons';
 import React from "react";
 import Card from "./Card";
+import { colors } from "../Global/Colors";
 
 const OrderItem = ({ order }) => {
     const total = order.items.reduce(
@@ -13,12 +14,12 @@ const OrderItem = ({ order }) => {
         <Pressable onPress={() => { }}>
             <Card additionalStyle={styles.card}>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>
+                    <Text style={styles.texInfo}>
                         {new Date(order.createdAt).toLocaleString()}
                     </Text>
-                    <Text style={styles.text2}>${total}</Text>
+                    <Text style={styles.textPrice}>${total}</Text>
                 </View>
-                <Feather name="search" size={30} color="black" />
+                <FontAwesome name="search" size={30} color="black" />
             </Card>
         </Pressable>
     );
@@ -29,7 +30,7 @@ export default OrderItem;
 const styles = StyleSheet.create({
     card: {
         height: 100,
-        padding: 10,
+        padding: 18,
         margin: 10,
         flexDirection: "row",
         justifyContent: "space-between",
@@ -41,14 +42,16 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "flex-start",
     },
-    text: {
+    texInfo: {
         fontFamily: "BROmega",
-        fontSize: 17,
-        color: "black",
+        fontSize: 18,
+        color: colors.darkBlue,
+        marginBottom: 5
     },
-    text2: {
+    textPrice: {
         fontFamily: "BROmega",
         fontSize: 19,
-        color: "gray",
+        color: colors.blue,
+        fontWeight: "bold",
     },
 });

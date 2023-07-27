@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import Search from '../Components/Search';
-import productsRaw from '../Data/products.json';
 import { colors } from '../Global/Colors';
 import ProductItem from '../Components/ProductItem';
 import { useSelector } from 'react-redux';
@@ -12,7 +11,6 @@ const ItemListCategory = ({
     const productsSelected = useSelector(state => state.shopReducer.value.productsSelected)
     const [products, setProducts] = useState([]);
     const [keyword, setKeyword] = useState("");
-    const [keywordError, setKeywordError] = useState("");
     useEffect(() => {
         //Lógica de manejo de category
         const productsFiltered = productsSelected.filter(product => product.title.toLocaleLowerCase().includes(keyword.toLowerCase()));
