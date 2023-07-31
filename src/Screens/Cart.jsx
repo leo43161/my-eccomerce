@@ -2,11 +2,12 @@ import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CartItem from '../Components/CartItem';
 import { colors } from '../Global/Colors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Cart = () => {
-  /* const total = CartData.reduce((acumulador, currentItem) => acumulador += currentItem.price * currentItem.quantity, 0); */
-  const { items: CartData, total, updatedAt, user } = useSelector(state => state.cartReducer.value)
+  const dispatch = useDispatch();
+  const { items: CartData, total, updatedAt, user } = useSelector(state => state.cartReducer.value);
+  console.log(CartData);
   return (
     <View style={styles.container}>
       <FlatList
@@ -28,7 +29,7 @@ const Cart = () => {
             renderItem={({ item }) => {
               return (
                 <View style={styles.priceContainer}>
-                  <Text style={styles.productBuy}>{item.title}: </Text>
+                  <Text style={styles.productBuy}>{item.title} x{item.quantity}: </Text>
                   <Text style={styles.productBuy}>${item.price}</Text>
                 </View>
               )
@@ -42,9 +43,13 @@ const Cart = () => {
           </View>
         </View>
         <View style={styles.buttonsContainer}>
-          <Pressable style={styles.buttonBuy}>
-            <Text style={[styles.buttonText, styles.buttonTextBuy]}>Comprar</Text>
-          </Pressable>
+          {
+            CartData.length > 0 &&
+            <Pressable style={styles.buttonBuy}>
+              <Text style={[styles.buttonText, styles.buttonTextBuy]}>Comprar</Text>
+            </Pressable>
+          }
+
         </View>
       </View>
     </View>

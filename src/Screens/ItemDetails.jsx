@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View, Image, Pressable, ScrollView  } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCartItem } from '../Features/cart/cartSlice';
 
 const ItemDetails = () => {
+  const dispatch = useDispatch()
   const productSelected = useSelector(state => state.shopReducer.value.productSelected);
   const [product, setProduct] = useState(null);
   const [imageProduct, setImageProduct] = useState("");
@@ -16,6 +18,13 @@ const ItemDetails = () => {
     setImageProduct(productSelected.images[0]);
     setProduct(productSelected);
   }, [productSelected]);
+
+  const onCart = () => {
+    dispatch(addCartItem({
+      ...product,
+      quantity: 1
+    }))
+  }
 
   const galleryHandler = (imgSelected) => {
     const galleryFiltered = product.images.filter((image) => image !== imgSelected);
@@ -64,7 +73,7 @@ const ItemDetails = () => {
               <Pressable style={styles.buttonBuy}>
                 <Text style={[styles.buttonText, styles.buttonTextBuy]}>Comprar</Text>
               </Pressable>
-              <Pressable style={styles.buttonCart}>
+              <Pressable onPress={onCart} style={styles.buttonCart}>
                 <FontAwesome name="shopping-cart" size={17} color="black" />
                 <Text style={styles.buttonText}>Carrito</Text>
               </Pressable>
