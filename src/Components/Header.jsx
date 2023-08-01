@@ -7,12 +7,14 @@ const Header = ({ route, navigation }) => {
         "Home": "Home",
         "CartScreen": "Cart",
         "OrdersScreen": "Orders",
+        "Login": "Login",
+        "Signup": "Signup",
         "Category": route.params ? route.params.category : "",
         "Product": route.params ? route.params.title : "",
     }
     return (
         <View style={styles.containerHeader}>
-            {route.name !== 'Home' ?
+            {(route.name !== 'Home' && route.name !== 'Login') ?
                 <Pressable style={styles.containerButton} onPress={() => navigation.goBack()}>
                     <Ionicons name="arrow-back" size={24} color="black" />
                 </Pressable>
