@@ -2,12 +2,21 @@ import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CartItem from '../Components/CartItem';
 import { colors } from '../Global/Colors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { usePostCartMutation } from '../Services/shopServices';
 
-const Cart = () => {
-  const dispatch = useDispatch();
+const Cart = ({ navigation }) => {
   const { items: CartData, total, updatedAt, user } = useSelector(state => state.cartReducer.value);
-  console.log(CartData);
+  const [triggerPostCart, result] = usePostCartMutation();
+  const onBuyHandler = () => {
+    triggerPostCart({ user, updatedAt, total, items: CartData }).then((response) => {
+      console.log(response);
+      if (response.data) {
+        navigation.navigate('Orders');
+      }
+    })
+  }
+  console.log(result);
   return (
     <View style={styles.container}>
       <FlatList
@@ -45,7 +54,7 @@ const Cart = () => {
         <View style={styles.buttonsContainer}>
           {
             CartData.length > 0 &&
-            <Pressable style={styles.buttonBuy}>
+            <Pressable style={styles.buttonBuy} onPress={onBuyHandler}>
               <Text style={[styles.buttonText, styles.buttonTextBuy]}>Comprar</Text>
             </Pressable>
           }
