@@ -37,7 +37,6 @@ const SignupScreen = ({ navigation }) => {
   }, [result])
 
   const onSubmit = () => {
-    console.log("qawdasdasdsa")
     try {
       //Submit logic with validations
       const isValidVariableEmail = isValidEmail(email)
@@ -84,9 +83,9 @@ const SignupScreen = ({ navigation }) => {
           isSecure={true}
         />
         <SubmitButton onPress={onSubmit} title="Send" />
-        <Text style={styles.sub}>Already have an account?</Text>
+        <Text style={styles.textSmall}>Already have an account?</Text>
         <Pressable onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.subLink}>Login</Text>
+          <Text style={styles.textLink}>Login</Text>
         </Pressable>
       </View>
     </View>
@@ -116,14 +115,14 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: "BROmega",
   },
-  sub: {
+  textSmall: {
     fontSize: 14,
     fontFamily: "BROmega",
     color: "black",
   },
-  subLink: {
+  textLink: {
     fontSize: 14,
     fontFamily: "BROmega",
-    color: "blue",
+    color: "black",
   },
 });

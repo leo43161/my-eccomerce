@@ -1,34 +1,72 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import InputForm from '../Components/InputForm'
-import SubmitButton from '../Components/SubmitButton'
-import { colors } from '../Global/Colors'
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import InputForm from "../Components/InputForm";
+import SubmitButton from "../Components/SubmitButton";
+import { colors } from "../Global/Colors";
+import { useSignInMutation } from "../Services/authServices";
+import { isAtLeastSixCharacters, isValidEmail } from "../Validations/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../Features/User/userSlice";
 
 const LoginScreen = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [errorEmail, setErrorEmail] = useState('')
+    const [errorPassword, setErrorPassword] = useState('')
+
+    const dispatch = useDispatch()
+
+    const [triggerSignIn, resultSignIn] = useSignInMutation();
     const onSubmit = () => {
 
-    }
+        //Submit logic with validations
+        const isValidVariableEmail = isValidEmail(email)
+        const isCorrectPassword = isAtLeastSixCharacters(password)
+
+        if (isValidVariableEmail && isCorrectPassword) {
+            triggerSignIn({
+                email,
+                password,
+                returnSecureToken: true,
+            });
+        }
+
+        if (!isValidVariableEmail) setErrorEmail('Email is not correct')
+        else setErrorEmail('')
+        if (!isCorrectPassword) setErrorPassword('Password must be at least 6 characters')
+        else setErrorPassword('')
+    };
+
+    useEffect(() => {
+        if (resultSignIn.isSuccess) {
+            dispatch(setUser({
+                email: resultSignIn.data.email,
+                idToken: resultSignIn.data.idToken,
+                localId: resultSignIn.data.localId,
+                profileImage: ""
+            }))
+        }
+    }, [resultSignIn])
+
     return (
         <View style={styles.main}>
             <View style={styles.container}>
                 <Text style={styles.title}>Login to start</Text>
                 <InputForm
                     label={"email"}
-                    onChange={() => { }}
-                    error={""}
+                    onChange={(email) => setEmail(email)}
+                    error={errorEmail}
                 />
                 <InputForm
                     label={"password"}
-                    onChange={() => { }}
-                    error={""}
+                    onChange={(password) => setPassword(password)}
+                    error={errorPassword}
                     isSecure={true}
                 />
-                <SubmitButton
-                    onPress={onSubmit}
-                    title="Send"
-                />
+                <SubmitButton onPress={onSubmit} title="Send" />
                 <Text style={styles.sub}>Not have an account?</Text>
-                <Pressable onPress={() => navigation.navigate('Signup')}>
+                <Pressable onPress={() => navigation.navigate("Signup")}>
                     <Text style={styles.subLink}>Sign up</Text>
                 </Pressable>
             </View>
