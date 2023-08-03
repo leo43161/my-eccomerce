@@ -4,17 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 
 const Header = ({ route, navigation }) => {
     const routes = {
-        "Home": "Home",
-        "CartScreen": "Cart",
-        "OrdersScreen": "Orders",
-        "Login": "Login",
-        "Signup": "Signup",
         "Category": route.params ? route.params.category : "",
         "Product": route.params ? route.params.title : "",
     }
     return (
         <View style={styles.containerHeader}>
-            {(route.name !== 'Home' && route.name !== 'Login') ?
+            {(route.name !== 'Home') ?
                 <Pressable style={styles.containerButton} onPress={() => navigation.goBack()}>
                     <Ionicons name="arrow-back" size={24} color="black" />
                 </Pressable>
@@ -22,7 +17,7 @@ const Header = ({ route, navigation }) => {
                 <View style={styles.containerButton}></View>
             }
             <View style={styles.containerTitle}>
-                <Text numberOfLines={1} style={[styles.text]}>{routes[route.name]}</Text>
+                <Text numberOfLines={1} style={[styles.text]}>{routes[route.name] ? routes[route.name] : route.name}</Text>
             </View>
             <View style={styles.containerThird}></View>
         </View>

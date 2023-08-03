@@ -9,6 +9,7 @@ import OrderStack from './OrdersStack';
 import { colors } from '../Global/Colors';
 import AuthStack from './AuthStack';
 import { useSelector } from 'react-redux';
+import ProfileStack from './ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,9 +18,9 @@ const Navigator = () => {
     return (
         <SafeAreaView style={styles.container}>
             <NavigationContainer>
-                {email ? <>
+                {true ? <>
                     <Tab.Navigator
-                        initialRouteName='Shop'
+                        initialRouteName='My Profile'
                         screenOptions={{
                             headerShown: false,
                             tabBarShown: false,
@@ -66,6 +67,21 @@ const Navigator = () => {
                                     return (
                                         <View>
                                             <FontAwesome name="th-list" size={24} color={focused ? colors.blue : colors.darkBlue} />
+                                        </View>
+                                    )
+                                },
+                                tabBarActiveTintColor: colors.blue,
+                                tabBarInactiveTintColor: colors.darkBlue
+                            }}
+                        />
+                        <Tab.Screen
+                            name='My Profile'
+                            component={ProfileStack}
+                            options={{
+                                tabBarIcon: ({ focused }) => {
+                                    return (
+                                        <View>
+                                            <FontAwesome name="user" size={24} color={focused ? colors.blue : colors.darkBlue} />
                                         </View>
                                     )
                                 },
