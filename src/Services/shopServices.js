@@ -55,6 +55,6 @@ export const {
     useGetProductByIdQuery,
     useGetProductsByCategoryQuery,
     usePostCartMutation,
-    getProfileImage,
-    postProfileImage
+    useGetProfileImageQuery,
+    usePostProfileImageMutation
 } = shopApi

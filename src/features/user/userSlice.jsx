@@ -28,6 +28,6 @@ export const userSlice = createSlice({
     }
 })
 
-export const { setUser, logOut } = userSlice.actions
+export const { setUser, logOut, saveImage } = userSlice.actions
 
 export default userSlice.reducer

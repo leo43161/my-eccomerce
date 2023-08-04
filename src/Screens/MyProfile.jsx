@@ -2,13 +2,52 @@ import { StyleSheet, Image, View, Text, Pressable } from 'react-native'
 import React from 'react'
 import { colors } from '../Global/Colors'
 import { FontAwesome } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetProfileImageQuery, usePostProfileImageMutation } from '../Services/shopServices';
+import * as ImagePicker from 'expo-image-picker';
+import { saveImage } from '../Features/user/userSlice';
+import * as MediaLibrary from 'expo-media-library';
 
-const MyProfile = () => {
+const MyProfile = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const [triggerSaveImage, resultSaveImage] = usePostProfileImageMutation()
     const { localId, profileImage } = useSelector(state => state.userReducer.value);
+    const { data: image } = useGetProfileImageQuery(localId);
+    const imageUser = image?.image;
+
+    const verifyCameraPermissions = async () => {
+        const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+        if (!granted) {
+            return false;
+        }
+        return true;
+    };
 
     const cameraHandler = async () => {
-
+        //Permission for camera
+        const isCameraPermissed = await verifyCameraPermissions();
+        const { status } = await MediaLibrary.requestPermissionsAsync();
+        console.log(isCameraPermissed)
+        if (isCameraPermissed && status === "granted") {
+            let resultShot = await ImagePicker.launchCameraAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [1, 1],
+                quality: 1
+            })
+            console.log(resultShot.assets);
+            if (!resultShot.canceled) {
+                const imagePick = resultShot.assets[0].uri
+                const response = await MediaLibrary.createAssetAsync(imagePick);
+                triggerSaveImage({
+                    image: response.uri,
+                    localId: localId
+                });
+                console.log(response)
+                // Set image on redux state
+                dispatch(saveImage(response.uri));
+            }
+        }
     };
     return (
         <View style={styles.container}>
@@ -16,7 +55,7 @@ const MyProfile = () => {
                 <View style={styles.profileHeadContainer}>
                     <View style={styles.imageProfileContainer}>
                         <Image
-                            source={require("../Assets/Img/defaultProfile.png")}
+                            source={imageUser || profileImage ? { uri: profileImage || imageUser } : require("../Assets/Img/defaultProfile.png")}
                             style={styles.imageProfile}
                             resizeMode="cover"
                         />
@@ -56,15 +95,16 @@ const styles = StyleSheet.create({
         backgroundColor: colors.ocean
     },
     imageProfileContainer: {
-        height: 120,
-        width: 120,
+        height: 110,
+        width: 110,
         overflow: "hidden",
         position: "relative",
         marginBottom: 10
     },
     imageProfile: {
         borderRadius: 150,
-        flex: 1,
+        width: "100%",
+        height: "100%",
         borderWidth: 3,
         borderColor: "white",
     },
