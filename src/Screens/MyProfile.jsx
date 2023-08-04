@@ -5,8 +5,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 
 const MyProfile = () => {
-    const {localId, profileImage} = useSelector(state => state.userReducer.value);
-    
+    const { localId, profileImage } = useSelector(state => state.userReducer.value);
+
     const cameraHandler = async () => {
 
     };
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: "white",
-        fontFamily:"BROmega"
+        fontFamily: "BROmega"
     },
     profileHeadContainer: {
         alignItems: "center",
