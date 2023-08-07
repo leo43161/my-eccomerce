@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: colors.darkBlue,
-        fontFamily: 'PlayFair',
+        fontFamily: 'BROmega',
         fontSize: 22
     },
 });

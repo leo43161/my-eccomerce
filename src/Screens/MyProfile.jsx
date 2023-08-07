@@ -7,6 +7,7 @@ import { useGetProfileImageQuery, usePostProfileImageMutation } from '../Service
 import * as ImagePicker from 'expo-image-picker';
 import { saveImage } from '../Features/user/userSlice';
 import * as MediaLibrary from 'expo-media-library';
+import Card from '../Components/Card';
 
 const MyProfile = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -52,7 +53,8 @@ const MyProfile = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <View style={styles.profileHeadContainer}>
+                <View></View>
+                <View style={styles.profileInfoHead}>
                     <View style={styles.imageProfileContainer}>
                         <Image
                             source={imageUser || profileImage ? { uri: profileImage || imageUser } : require("../Assets/Img/defaultProfile.png")}
@@ -64,6 +66,14 @@ const MyProfile = ({ navigation }) => {
                         </Pressable>
                     </View>
                     <Text style={styles.nameProfile}>leo43161301@gmail.com</Text>
+                </View>
+                <View style={styles.profileHeadBottom}>
+                    <View style={styles.headBottomRight}>
+                        <Pressable><Card additionalStyle={styles.buttonLocation}>
+                            <FontAwesome name="map-marker" size={22} color="black" />
+                            <Text style={styles.locationText}>San miguel de tucuman</Text>
+                        </Card></Pressable>
+                    </View>
                 </View>
             </View>
         </View>
@@ -84,15 +94,40 @@ const styles = StyleSheet.create({
         color: "white",
         fontFamily: "BROmega"
     },
+    locationText: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        fontFamily: "BROmega"
+    },
     profileHeadContainer: {
+
+    },
+    profileInfoHead: {
         alignItems: "center",
+        justifyContent: "space-between"
+    },
+    buttonLocation: {
+        paddingVertical: 7,
+        paddingHorizontal: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 6
+    },
+    profileHeadBottom: {
+        width: "100%"
+    },
+    headBottomRight: {
+        flexDirection: "row",
+        justifyContent: "flex-end"
     },
     headerContainer: {
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: "center",
         height: 400,
         width: "100%",
-        backgroundColor: colors.ocean
+        backgroundColor: colors.ocean,
+        padding: 15
     },
     imageProfileContainer: {
         height: 110,
