@@ -69,10 +69,12 @@ const MyProfile = ({ navigation }) => {
                 </View>
                 <View style={styles.profileHeadBottom}>
                     <View style={styles.headBottomRight}>
-                        <Pressable><Card additionalStyle={styles.buttonLocation}>
-                            <FontAwesome name="map-marker" size={22} color="black" />
-                            <Text style={styles.locationText}>San miguel de tucuman</Text>
-                        </Card></Pressable>
+                        <Pressable onPress={() => navigation.navigate('ListLocation')}>
+                            <Card additionalStyle={styles.buttonLocation}>
+                                <FontAwesome name="map-marker" size={22} color="black" />
+                                <Text style={styles.locationText}>San miguel de tucuman</Text>
+                            </Card>
+                        </Pressable>
                     </View>
                 </View>
             </View>
