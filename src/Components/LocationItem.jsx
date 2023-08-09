@@ -4,13 +4,13 @@ import React from "react";
 import Card from "./Card";
 import { colors } from "../Global/Colors";
 
-const LocationItem = ({ navigation }) => {
+const LocationItem = ({ navigation, location }) => {
     return (
-        <Pressable onPress={() => { }}>
+        <Pressable onPress={() => navigation.navigate("Location Selector")}>
             <Card additionalStyle={styles.card}>
                 <View style={styles.textContainer}>
                     <Text style={styles.textPrice}>
-                        San Miguel de tucuman
+                        {location.address}
                     </Text>
                 </View>
                 <View>

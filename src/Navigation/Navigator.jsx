@@ -18,7 +18,7 @@ const Navigator = () => {
     return (
         <SafeAreaView style={styles.container}>
             <NavigationContainer>
-                {true ? <>
+                {email ? <>
                     <Tab.Navigator
                         initialRouteName='My Profile'
                         screenOptions={{

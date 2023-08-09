@@ -10,14 +10,15 @@ const ListLocationScreen = ({ navigation }) => {
   const { localId, location } = useSelector((state) => state.userReducer.value)
   const { data: userLocationQuery, isError, isLoading } = useGetUserLocationQuery(localId)
 
-  return true ? (
+  return location?.latitude || userLocationQuery ? (
     <View style={styles.container}>
       <FlatList
-        data={[location?.latitude || userLocationQuery]}
+        data={[location || userLocationQuery]}
         keyExtractor={orderItem => orderItem}
         renderItem={({ item }) => {
           return (
             <LocationItem
+            location={item}
             navigation={navigation}
             />
           )
@@ -26,7 +27,7 @@ const ListLocationScreen = ({ navigation }) => {
     </View>
   ) : (<View style={styles.container}>
     <Text style={styles.text}>No location set</Text>
-    <Pressable onPress={() => navigation.navigate("Profile")}>
+    <Pressable onPress={() => navigation.navigate("Location Selector")}>
       <Card>
         <Text style={styles.text}>Set location</Text>
       </Card>

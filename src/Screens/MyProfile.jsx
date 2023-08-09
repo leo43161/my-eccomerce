@@ -3,7 +3,7 @@ import React from 'react'
 import { colors } from '../Global/Colors'
 import { FontAwesome } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetProfileImageQuery, usePostProfileImageMutation } from '../Services/shopServices';
+import { useGetProfileImageQuery, useGetUserLocationQuery, usePostProfileImageMutation } from '../Services/shopServices';
 import * as ImagePicker from 'expo-image-picker';
 import { saveImage } from '../Features/user/userSlice';
 import * as MediaLibrary from 'expo-media-library';
@@ -12,9 +12,11 @@ import Card from '../Components/Card';
 const MyProfile = ({ navigation }) => {
     const dispatch = useDispatch();
     const [triggerSaveImage, resultSaveImage] = usePostProfileImageMutation()
-    const { localId, profileImage } = useSelector(state => state.userReducer.value);
+    const { localId, profileImage, location } = useSelector(state => state.userReducer.value);
     const { data: image } = useGetProfileImageQuery(localId);
+    const { data: locationRemote } = useGetUserLocationQuery(localId);
     const imageUser = image?.image;
+    const addressUser = locationRemote?.address || location?.address;
 
     const verifyCameraPermissions = async () => {
         const { granted } = await ImagePicker.requestCameraPermissionsAsync();
@@ -69,10 +71,10 @@ const MyProfile = ({ navigation }) => {
                 </View>
                 <View style={styles.profileHeadBottom}>
                     <View style={styles.headBottomRight}>
-                        <Pressable onPress={() => navigation.navigate('ListLocation')}>
+                        <Pressable onPress={() => navigation.navigate('List Location')}>
                             <Card additionalStyle={styles.buttonLocation}>
                                 <FontAwesome name="map-marker" size={22} color="black" />
-                                <Text style={styles.locationText}>San miguel de tucuman</Text>
+                                <Text numberOfLines={1} style={styles.locationText}>{addressUser}</Text>
                             </Card>
                         </Pressable>
                     </View>
@@ -114,7 +116,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        gap: 6
+        gap: 6,
+        maxWidth: 300
     },
     profileHeadBottom: {
         width: "100%"
