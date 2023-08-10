@@ -1,5 +1,5 @@
 import { StyleSheet, SafeAreaView, StatusBar, View, Platform } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ShopStack from './ShopStack';
@@ -8,13 +8,37 @@ import CartStack from './CartStack';
 import OrderStack from './OrdersStack';
 import { colors } from '../Global/Colors';
 import AuthStack from './AuthStack';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileStack from './ProfileStack';
+import { getSession } from '../SQLite';
+import { setUser } from '../Features/user/userSlice';
 
 const Tab = createBottomTabNavigator();
 
 const Navigator = () => {
     const { email } = useSelector(state => state.userReducer.value);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        (async () => {
+            try {
+                console.log('Getting session...');
+                const session = await getSession()
+                console.log('Sesion: ');
+                console.log(session);
+                if (session?.rows.length) {
+                    const user = session.rows._array[0]
+                    console.log(user);
+                    dispatch(setUser(user))
+                }
+            } catch (error) {
+                console.log('Error getting session');
+                console.log(error.message);
+            }
+        })
+    },[])
+
     return (
         <SafeAreaView style={styles.container}>
             <NavigationContainer>
