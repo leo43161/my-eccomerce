@@ -25,7 +25,7 @@ export default LocationItem;
 
 const styles = StyleSheet.create({
     card: {
-        height: 100,
+        minHeight: 100,
         padding: 18,
         flexDirection: "row",
         justifyContent: "space-between",

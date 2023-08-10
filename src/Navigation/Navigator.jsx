@@ -36,7 +36,7 @@ const Navigator = () => {
                 console.log('Error getting session');
                 console.log(error.message);
             }
-        })
+        })()
     },[])
 
     return (
@@ -44,7 +44,7 @@ const Navigator = () => {
             <NavigationContainer>
                 {email ? <>
                     <Tab.Navigator
-                        initialRouteName='My Profile'
+                        initialRouteName='Shop'
                         screenOptions={{
                             headerShown: false,
                             tabBarShown: false,

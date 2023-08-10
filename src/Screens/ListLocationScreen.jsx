@@ -9,11 +9,13 @@ import Card from '../Components/Card'
 const ListLocationScreen = ({ navigation }) => {
   const { localId, location } = useSelector((state) => state.userReducer.value)
   const { data: userLocationQuery, isError, isLoading } = useGetUserLocationQuery(localId)
+  console.log(location)
+  console.log(userLocationQuery)
 
   return location?.latitude || userLocationQuery ? (
     <View style={styles.container}>
       <FlatList
-        data={[location || userLocationQuery]}
+        data={[location?.longitude || userLocationQuery]}
         keyExtractor={orderItem => orderItem}
         renderItem={({ item }) => {
           return (
