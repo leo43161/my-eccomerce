@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     },
     categorySelected: {
         backgroundColor: colors.primary,
+        borderColor: colors.primary,
     },
     categorySelectedText: {
         color: "white"
