@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     textTitle: {
         fontSize: 18,
-        color: colors.darkBlue,
+        color: colors.dark,
         fontFamily: "BROmega",
     },
     textCategory: {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     textPrice: {
         fontSize: 20,
-        color: colors.darkBlue,
+        color: colors.dark,
         fontFamily: "BROmega",
         fontWeight: "bold",
     },

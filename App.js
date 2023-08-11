@@ -2,7 +2,7 @@ import { useFonts } from 'expo-font';
 import Navigator from './src/Navigation/Navigator';
 import { Provider } from 'react-redux';
 import store from './src/Store/store';
-import { dropTableSessions, init } from './src/SQLite';
+import { init } from './src/SQLite';
 import { useEffect } from 'react';
 
 export default function App() {

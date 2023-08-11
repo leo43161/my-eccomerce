@@ -27,7 +27,7 @@ const ItemListCategory = ({
         <View style={styles.container}>
             {
                 isLoading ?
-                    <ActivityIndicator size={55} color={colors.blue} /> :
+                    <ActivityIndicator size={55} color={colors.secondary} /> :
                     !isError ?
                         <>
                             <Search
@@ -53,7 +53,7 @@ export default ItemListCategory
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.lightOcean,
+        backgroundColor: colors.light,
         alignItems: 'center',
         justifyContent: 'center',
     },

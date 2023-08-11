@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'space-between',
         flex: 1,
-        backgroundColor: colors.lightOcean
+        backgroundColor: colors.light
     },
     nameProfile: {
         fontSize: 20,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         height: 400,
         width: "100%",
-        backgroundColor: colors.ocean,
+        backgroundColor: colors.primary,
         padding: 15
     },
     imageProfileContainer: {
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0,
         borderWidth: 2,
-        backgroundColor: colors.blue,
+        backgroundColor: colors.secondary,
         borderColor: "white",
     },
 })

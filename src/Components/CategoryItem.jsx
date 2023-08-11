@@ -16,17 +16,14 @@ const CategoryItem = ({
         dispatch(setCategorySelected(item));
         navigation.navigate('Category', { category: item.name });
     }
-    
+
     return (
         <Pressable
             onPress={onSelectCategory}
-            style={styles.cardContainer}>
-            <Card additionalStyle={styles.card}>
-                <View style={styles.icon}>
-                    <FontAwesome5 name={item.icon} size={60} color={colors.blue} />
-                </View>
-                <Text style={styles.textCategory}>{item.title}</Text>
-            </Card>
+            style={[styles.cardContainer]}>
+            <View style={[styles.card, item.id === 0 && styles.categorySelected]}>
+                <Text style={[styles.textCategory, item.id === 0 && styles.categorySelectedText]}>{item.title}</Text>
+            </View>
         </Pressable>
     )
 }
@@ -35,22 +32,31 @@ export default CategoryItem
 
 const styles = StyleSheet.create({
     cardContainer: {
-        width: "50%",
-        padding: 10
+        paddingHorizontal: 4,
     },
     card: {
-        width: "100%",
-        height: 150,
-        justifyContent: "center",
-        paddingHorizontal: 15
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 12,
+        paddingVertical: 10,
+        gap: 6,
+        borderRadius: 13,
+        borderWidth: 1,
+        borderColor: colors.gray100,
+        backgroundColor: colors.gray100,
+    },
+    categorySelected: {
+        backgroundColor: colors.primary,
+    },
+    categorySelectedText: {
+        color: "white"
     },
     textCategory: {
-        fontSize: 21,
+        fontSize: 13,
         fontFamily: "BROmega",
         textAlign: "center",
-        fontWeight: "bold",
+        fontWeight: "200",
+        color: colors.gray300
     },
-    icon: {
-        marginBottom: 10,
-    }
 })

@@ -57,7 +57,7 @@ const ItemDetails = () => {
             <View style={styles.categoryContainer}>
               <Text style={styles.category}>{product.category}</Text>
               <View style={[styles.like]}>
-                <FontAwesome name="heart" size={17} color={colors.ocean} />
+                <FontAwesome name="heart" size={17} color={colors.primary} />
               </View>
             </View>
             <View style={styles.titleContainer}>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   category: {
     fontSize: 18,
     fontWeight: 'bold',
-    backgroundColor: colors.ocean,
+    backgroundColor: colors.primary,
     paddingVertical: 3,
     paddingHorizontal: 10,
     borderRadius: 20,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderWidth: 1,
     padding: 9,
-    borderColor: colors.ocean
+    borderColor: colors.primary
   },
   titleContainer: {
     flexDirection: "row",
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   buttonBuy: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: colors.ocean,
+    backgroundColor: colors.primary,
     borderRadius: 15,
     paddingVertical: 15,
     paddingVertical: 10

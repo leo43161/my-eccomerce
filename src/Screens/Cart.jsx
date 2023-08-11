@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     flex: 1,
-    backgroundColor: colors.lightOcean
+    backgroundColor: colors.light
   },
   totalContainer: {
     borderTopColor: "#F3F3F3",
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   buttonBuy: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: colors.ocean,
+    backgroundColor: colors.primary,
     borderRadius: 15,
     paddingVertical: 12,
   },
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   priceTotal: {
     fontSize: 22,
     fontWeight: "bold",
-    color: colors.ocean,
+    color: colors.primary,
   },
   buttonTextBuy: {
     color: "white",

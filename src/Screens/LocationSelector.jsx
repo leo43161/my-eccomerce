@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "flex-start",
-        backgroundColor: colors.lightOcean
+        backgroundColor: colors.light
     },
     text: {
         paddingTop: 20,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        backgroundColor: colors.ocean,
+        backgroundColor: colors.primary,
         borderRadius: 15,
         paddingVertical: 15,
         paddingHorizontal: 10

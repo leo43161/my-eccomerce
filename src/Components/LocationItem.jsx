@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
     texInfo: {
         fontFamily: "BROmega",
         fontSize: 18,
-        color: colors.darkBlue,
+        color: colors.dark,
         marginBottom: 5
     },
     textPrice: {
         fontFamily: "BROmega",
         fontSize: 19,
-        color: colors.blue,
+        color: colors.secondary,
         fontWeight: "bold",
     },
 });

@@ -44,14 +44,11 @@ const LoginScreen = ({ navigation }) => {
             try {
                 if (resultSignIn.isSuccess) {
                     //Insert session in SQLite database
-                    console.log('inserting Session');
                     const response = await insertSession({
                         idToken: resultSignIn.data.idToken,
                         localId: resultSignIn.data.localId,
                         email: resultSignIn.data.email,
                     })
-                    console.log('Session inserted: ');
-                    console.log(response);
                     dispatch(setUser({
                         email: resultSignIn.data.email,
                         idToken: resultSignIn.data.idToken,
@@ -73,7 +70,10 @@ const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
-                <Text style={styles.title}>Login to start</Text>
+                <View style={styles.containerHeader}>
+                    <Text style={styles.title}>Hello Again!</Text>
+                    <Text style={styles.subTitle}>Welcome back you've been missed!</Text>
+                </View>
                 <InputForm
                     label={"email"}
                     onChange={(email) => setEmail(email)}
@@ -85,12 +85,13 @@ const LoginScreen = ({ navigation }) => {
                     error={errorPassword}
                     isSecure={true}
                 />
-                <SubmitButton onPress={onSubmit} title="Send" />
+                <SubmitButton onPress={onSubmit} title="Sing in" />
                 <Text style={styles.sub}>Not have an account?</Text>
                 <Pressable onPress={() => navigation.navigate("Signup")}>
                     <Text style={styles.subLink}>Sign up</Text>
                 </Pressable>
             </View>
+
         </View>
     )
 }
@@ -102,21 +103,27 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingHorizontal: 20
     },
     container: {
-        width: '90%',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        width: '100%',
+        height: '90%',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: colors.lightOcean,
-        gap: 15,
-        paddingVertical: 20,
-        borderRadius: 10,
+    },
+    containerHeader: {
+        alignItems: 'center',
+        gap: 10
     },
     title: {
-        fontSize: 22,
+        fontSize: 25,
         fontFamily: 'BROmega'
+    },
+    subTitle: {
+        fontSize: 20,
+        fontFamily: 'BROmega',
+        textAlign: 'center'
     },
     sub: {
         fontSize: 14,

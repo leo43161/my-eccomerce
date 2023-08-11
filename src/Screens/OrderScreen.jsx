@@ -28,7 +28,7 @@ export default OrderScreen
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.lightOcean,
+    backgroundColor: colors.light,
     flex: 1
   }
 })

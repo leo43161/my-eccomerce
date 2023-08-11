@@ -16,11 +16,11 @@ const Search = ({
                 <View style={styles.inputContainer}>
                     {!keyword.trim() ?
                         <Pressable>
-                            <FontAwesome name="search" size={24} color={colors.darkBlue} />
+                            <FontAwesome name="search" size={24} color={colors.dark} />
                         </Pressable>
                         :
                         <Pressable onPress={deleteSearch}>
-                            <FontAwesome name="close" size={24} color={colors.darkBlue} />
+                            <FontAwesome name="close" size={24} color={colors.dark} />
                         </Pressable>
                     }
                     <TextInput
@@ -28,7 +28,7 @@ const Search = ({
                         placeholder='Search...'
                         value={keyword}
                         onChangeText={setKeyword}
-                        placeholderTextColor={colors.darkBlue}
+                        placeholderTextColor={colors.dark}
                     />
                 </View>
                 <Pressable style={styles.buttonContainer} onPress={() => onSearch(keyword)}>
@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
         color: "white"
     },
     buttonText: {
-        color: colors.darkBlue
+        color: colors.dark
     },
     input: {
         flex: 1,
         padding: 8,
         fontSize: 18,
-        color: colors.darkBlue
+        color: colors.dark
     },
 })

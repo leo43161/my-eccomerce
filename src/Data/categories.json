@@ -1,5 +1,11 @@
 [
     {
+      "id": 0,
+      "title": "All",
+      "icon": "mobile",
+      "name": "all"
+    },
+    {
       "id": 1,
       "title": "Smartphones",
       "icon": "mobile",

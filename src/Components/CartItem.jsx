@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         gap: 4,
     },
     buttonQuantity: {
-        backgroundColor: colors.ocean,
+        backgroundColor: colors.primary,
         paddingVertical: 5,
         paddingHorizontal: 7,
         borderRadius: 9,

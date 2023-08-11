@@ -14,15 +14,15 @@ export default SubmitButton;
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: colors.ocean,
+        backgroundColor: colors.primary,
         borderRadius: 6,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 8,
-        width: '60%'
+        width: '90%'
     },
     text: {
-        color: colors.darkBlue,
+        color: colors.dark,
         fontFamily: 'BROmega',
         fontSize: 22
     },
