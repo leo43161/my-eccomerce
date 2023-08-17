@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     textOff: {
+        fontSize: 11,
         color: "white",
     },
     textMore: {
