@@ -14,25 +14,24 @@ const Search = ({
         <View style={styles.container}>
             <View style={styles.searchContainer}>
                 <View style={styles.inputContainer}>
-                    {!keyword.trim() ?
-                        <Pressable>
-                            <FontAwesome name="search" size={24} color={colors.dark} />
-                        </Pressable>
-                        :
-                        <Pressable onPress={deleteSearch}>
-                            <FontAwesome name="close" size={24} color={colors.dark} />
-                        </Pressable>
-                    }
                     <TextInput
                         style={[styles.input]}
                         placeholder='Search...'
                         value={keyword}
                         onChangeText={setKeyword}
                         placeholderTextColor={colors.dark}
-                    />
+                        />
                 </View>
                 <Pressable style={styles.buttonContainer} onPress={() => onSearch(keyword)}>
-                    <Text style={styles.buttonText}>Buscar</Text>
+                        {!keyword.trim() ?
+                            <Pressable>
+                                <FontAwesome name="search" size={24} color={colors.dark} />
+                            </Pressable>
+                            :
+                            <Pressable onPress={deleteSearch}>
+                                <FontAwesome name="close" size={24} color={colors.dark} />
+                            </Pressable>
+                        }
                 </Pressable>
             </View>
         </View>
@@ -46,20 +45,18 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         width: '100%',
-        paddingTop: 15,
-        paddingBottom: 5,
-        paddingHorizontal: 20
     },
     searchContainer: {
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        borderRadius: 35,
         backgroundColor: "white",
     },
     inputContainer: {
         width: '80%',
+        borderWidth: 1,
+        borderRadius: 15,
         flexDirection: 'row',
         justifyContent: 'center',
         paddingHorizontal: 13,

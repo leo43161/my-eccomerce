@@ -1,22 +1,26 @@
 import React from 'react'
-import { FlatList, StyleSheet, View, ActivityIndicator } from 'react-native'
+import { FlatList, StyleSheet, View, ActivityIndicator, Text, Image } from 'react-native'
 import CategoryItem from '../Components/CategoryItem'
 import { colors } from '../Global/Colors'
 import { useGetCategoriesQuery } from '../Services/shopServices'
+import ProductHighlight from '../Components/ProductHighlight'
+import Search from '../Components/Search'
 
 const Home = ({ navigation }) => {
   const { data: categories, isLoading, isError } = useGetCategoriesQuery();
   return (
     <View style={styles.container}>
+      <Search></Search>
+      <ProductHighlight additionalStyle={{ marginBottom: 15 }} />
       {
         isLoading ?
           <ActivityIndicator size={55} color={colors.secondary} /> :
           !isError ?
             <>
               <FlatList style={{
-                paddingHorizontal: 10,
                 width: "100%",
                 maxHeight: 60,
+
               }}
                 horizontal={true}
                 data={categories}
@@ -28,7 +32,6 @@ const Home = ({ navigation }) => {
             :
             null
       }
-
     </View>
   )
 }
@@ -40,6 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignItems: 'center',
-    paddingTop: 10
+    paddingTop: 10,
+    paddingHorizontal: 10,
   },
 })

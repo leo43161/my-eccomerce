@@ -1,7 +1,5 @@
 import { StyleSheet, Text, Pressable, View } from 'react-native'
 import React from 'react'
-import Card from './Card'
-import { FontAwesome5 } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
 import { setCategorySelected } from '../Features/shop/shopSlice';
 import { useDispatch } from 'react-redux';
