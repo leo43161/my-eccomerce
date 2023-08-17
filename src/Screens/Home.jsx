@@ -20,7 +20,6 @@ const Home = ({ navigation }) => {
               <FlatList style={{
                 width: "100%",
                 maxHeight: 60,
-
               }}
                 horizontal={true}
                 data={categories}
@@ -44,6 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: 'center',
     paddingTop: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
+    overflow: "visible"
   },
 })

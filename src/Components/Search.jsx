@@ -8,34 +8,32 @@ const Search = ({
     const [keyword, setKeyword] = useState("");
     const deleteSearch = () => {
         setKeyword("");
-        onSearch("");
+        /* onSearch(""); */
     }
     return (
         <View style={styles.container}>
             <View style={styles.searchContainer}>
                 <View style={styles.inputContainer}>
+                    {keyword.trim() &&
+                        <Pressable onPress={deleteSearch}>
+                            <FontAwesome name="close" size={19} color={colors.light} />
+                        </Pressable>
+                    }
                     <TextInput
                         style={[styles.input]}
                         placeholder='Search...'
                         value={keyword}
                         onChangeText={setKeyword}
-                        placeholderTextColor={colors.dark}
-                        />
+                        placeholderTextColor={colors.gray300}
+                    />
                 </View>
                 <Pressable style={styles.buttonContainer} onPress={() => onSearch(keyword)}>
-                        {!keyword.trim() ?
-                            <Pressable>
-                                <FontAwesome name="search" size={24} color={colors.dark} />
-                            </Pressable>
-                            :
-                            <Pressable onPress={deleteSearch}>
-                                <FontAwesome name="close" size={24} color={colors.dark} />
-                            </Pressable>
-                        }
+                    <Pressable>
+                        <FontAwesome name="search" size={19} color={colors.light} />
+                    </Pressable>
                 </Pressable>
             </View>
         </View>
-
     )
 }
 
@@ -45,6 +43,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         width: '100%',
+        marginBottom: 20
     },
     searchContainer: {
         flexDirection: 'row',
@@ -52,31 +51,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         backgroundColor: "white",
+        gap: 7
     },
     inputContainer: {
-        width: '80%',
         borderWidth: 1,
-        borderRadius: 15,
+        borderColor: colors.gray200,
+        borderRadius: 10,
         flexDirection: 'row',
         justifyContent: 'center',
         paddingHorizontal: 13,
         alignItems: 'center',
+        flex: 9
     },
     buttonContainer: {
-        width: '20%',
+        height: "100%",
+        borderRadius: 10,
+        backgroundColor: colors.primary,
         flexDirection: 'row',
         justifyContent: 'center',
         paddingHorizontal: 10,
         alignItems: 'center',
-        color: "white"
+        color: "white",
+        flex: 1
     },
     buttonText: {
         color: colors.dark
     },
     input: {
         flex: 1,
-        padding: 8,
-        fontSize: 18,
-        color: colors.dark
+        padding: 7,
+        fontSize: 13,
+        color: colors.dark,
     },
 })

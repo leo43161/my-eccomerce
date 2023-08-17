@@ -37,7 +37,6 @@ export default ProductHighlight
 const styles = StyleSheet.create({
     containerCardHeader: {
         width: "100%",
-        paddingHorizontal: 10,
     },
     cardHeader: {
         backgroundColor: colors.gray100,
