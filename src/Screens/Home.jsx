@@ -5,13 +5,14 @@ import { colors } from '../Global/Colors'
 import { useGetCategoriesQuery } from '../Services/shopServices'
 import ProductHighlight from '../Components/ProductHighlight'
 import Search from '../Components/Search'
+import AllCategories from './AllCategories'
 
 const Home = ({ navigation }) => {
   const { data: categories, isLoading, isError } = useGetCategoriesQuery();
   return (
     <View style={styles.container}>
       <Search></Search>
-      <ProductHighlight additionalStyle={{ marginBottom: 15 }} />
+      <ProductHighlight additionalStyle={{ marginBottom: 20 }} />
       {
         isLoading ?
           <ActivityIndicator size={55} color={colors.secondary} /> :
@@ -31,6 +32,7 @@ const Home = ({ navigation }) => {
             :
             null
       }
+      <AllCategories></AllCategories>
     </View>
   )
 }
