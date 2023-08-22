@@ -5,6 +5,31 @@ export const shopApi = createApi({
     reducerPath: 'shopApi',
     baseQuery: fetchBaseQuery({ baseUrl: realtime_database_url }),
     endpoints: (builder) => ({
+
+        getCategoriesWithProducts: builder.query({
+            query: () => 'categories.json',
+            transformResponse: async (response) => {
+                const categories = Object.values(response);
+                const productsResponse = await fetch(`${realtime_database_url}/products.json`);
+                const productsData = await productsResponse.json();
+
+                const categoriesWithMatchingProducts = categories.reduce((accumulator, category) => {
+                    const matchingProducts = Object.values(productsData).filter(product => product.category === category.name);
+                    if (matchingProducts.length > 0) {
+                        accumulator.push({
+                            id: category.id,
+                            category: category.name,
+                            title: category.title,
+                            products: matchingProducts.slice(0, 2)
+                        });
+                    }
+                    return accumulator;
+                }, []);
+
+                return categoriesWithMatchingProducts;
+            },
+        }),
+
         getCategories: builder.query({
             query: () => 'categories.json'
         }),
@@ -38,7 +63,7 @@ export const shopApi = createApi({
         }),
         //Aquí hacemos un put para que no me genere ninguna clave nueva de por medio.
         postProfileImage: builder.mutation({
-            query: ({image, localId}) => ({
+            query: ({ image, localId }) => ({
                 url: `profileImages/${localId}.json`,
                 method: "PUT",
                 body: {
@@ -50,7 +75,7 @@ export const shopApi = createApi({
             query: (localId) => `locations/${localId}.json`,
         }),
         postUserLocation: builder.mutation({
-            query: ({location, localId}) => ({
+            query: ({ location, localId }) => ({
                 url: `locations/${localId}.json`,
                 method: "PUT",
                 body: {
@@ -72,5 +97,6 @@ export const {
     useGetProfileImageQuery,
     usePostProfileImageMutation,
     useGetUserLocationQuery,
-    usePostUserLocationMutation
+    usePostUserLocationMutation,
+    useGetCategoriesWithProductsQuery
 } = shopApi

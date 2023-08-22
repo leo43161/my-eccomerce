@@ -1,60 +1,36 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { colors } from '../Global/Colors'
-import Card from '../Components/Card'
+import ProductItem from '../Components/ProductItem'
+import { useGetCategoriesWithProductsQuery } from '../Services/shopServices'
+import ProductHighlight from '../Components/ProductHighlight'
 
 const AllCategories = () => {
+  const { data: categories, isLoading, isError } = useGetCategoriesWithProductsQuery();
   return (
-    <View style={styles.container}>
-      <View style={styles.titleCategoryContainer}>
-        <Text style={styles.titleCategory}>Sofas</Text>
-        <Text style={styles.verMas}>Ver todo</Text>
-      </View>
-      <View style={styles.cardsContainer}>
-        <Card additionalStyle={styles.card}>
-          <View style={styles.imgContainer}>
-            <Image
-              resizeMode='contain'
-              style={styles.image}
-              source={require('../Assets/Img/mueble2.png')}
-            />
-          </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.titleProduct}>
-              Silla de Oficina
-            </Text>
-            <Text style={styles.descriptionProduct}>
-              Lorem ipsum dolor, sit amet consectetur
-            </Text>
-            <View style={styles.priceContainer}>
-              <Text style={styles.price}>$750.00</Text>
-              <Text style={styles.offer}>$750.00</Text>
-            </View>
-          </View>
-        </Card>
-        <Card additionalStyle={styles.card}>
-          <View style={styles.imgContainer}>
-            <Image
-              resizeMode='contain'
-              style={styles.image}
-              source={require('../Assets/Img/mueble1.png')}
-            />
-          </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.titleProduct}>
-              Silla de Oficina
-            </Text>
-            <Text style={styles.descriptionProduct}>
-              Lorem ipsum dolor, sit amet consectetur
-            </Text>
-            <View style={styles.priceContainer}>
-              <Text style={styles.price}>$750.00</Text>
-              <Text style={styles.offer}>$750.00</Text>
-            </View>
-          </View>
-        </Card>
-      </View>
-    </View>
+    <ScrollView style={styles.container}>
+      <ProductHighlight></ProductHighlight>
+      {
+        isLoading ?
+          <ActivityIndicator size={55} color={colors.secondary} /> :
+          !isError ?
+            <> {
+              categories.map((category) =>
+                <View key={category.id} style={styles.categoryContainer}>
+                  <View style={styles.titleCategoryContainer}>
+                    <Text style={styles.titleCategory}>{category.title}</Text>
+                    <Text style={styles.verMas}>Ver todo</Text>
+                  </View>
+                  <View style={styles.cardsContainer}>
+                    {category.products.map(product => <ProductItem key={product.id} product={product}></ProductItem>)}
+                  </View>
+                </View>)
+            }
+            </>
+            : null
+      }
+    </ScrollView>
+
   )
 }
 
@@ -65,18 +41,11 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     paddingHorizontal: 5,
-    flex: 1
+    flex: 1,
+    paddingVertical: 10
   },
-  priceContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
-  infoContainer: {
-    paddingHorizontal: 15,
-    paddingBottom: 15
-  },
-  imgContainer: {
-    paddingTop: 15
+  categoryContainer: {
+    marginBottom: 13
   },
   cardsContainer: {
     flexDirection: "row",
@@ -89,28 +58,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 15
   },
-  /* Text */
-  titleProduct: {
-    fontWeight: "bold",
-    fontSize: 16,
-    marginBottom: 3
-  },
-  descriptionProduct: {
-    fontSize: 12,
-    color: colors.gray300,
-    marginBottom: 5
-  },
-  price: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: colors.primary,
-  },
-  offer: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: colors.gray300,
-    textDecorationLine: "line-through"
-  },
   titleCategory: {
     fontWeight: "900",
     fontSize: 20
@@ -120,13 +67,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.primary
   },
-  /* Others */
-  card: {
-    flex: 2
-  },
-  image: {
-    width: "100%",
-    height: 140,
-    /* borderWidth: 1 */
-  }
 })

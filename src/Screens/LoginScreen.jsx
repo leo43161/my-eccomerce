@@ -7,7 +7,7 @@ import { useSignInMutation } from "../Services/authServices";
 import { isAtLeastSixCharacters, isValidEmail } from "../Validations/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Features/user/userSlice";
-import { insertSession } from "../SQLite";
+import { insertSession, dropTableSessions } from "../SQLite";
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -19,6 +19,9 @@ const LoginScreen = ({ navigation }) => {
     const dispatch = useDispatch()
 
     const [triggerSignIn, resultSignIn] = useSignInMutation();
+    const deleteSession = async () => {
+        await dropTableSessions()
+    }
     const onSubmit = () => {
 
         //Submit logic with validations
@@ -89,6 +92,9 @@ const LoginScreen = ({ navigation }) => {
                 <Text style={styles.sub}>Not have an account?</Text>
                 <Pressable onPress={() => navigation.navigate("Signup")}>
                     <Text style={styles.subLink}>Sign up</Text>
+                </Pressable>
+                <Pressable onPress={deleteSession}>
+                    <Text style={styles.subLink}>Borrar Session</Text>
                 </Pressable>
             </View>
 

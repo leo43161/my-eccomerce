@@ -1,8 +1,8 @@
 import React from 'react'
-import { FlatList, StyleSheet, View, ActivityIndicator, Text, Image } from 'react-native'
+import { FlatList, StyleSheet, View, ActivityIndicator, ScrollView, Image } from 'react-native'
 import CategoryItem from '../Components/CategoryItem'
 import { colors } from '../Global/Colors'
-import { useGetCategoriesQuery } from '../Services/shopServices'
+import { useGetCategoriesQuery, useGetCategoriesWithProductsQuery } from '../Services/shopServices'
 import ProductHighlight from '../Components/ProductHighlight'
 import Search from '../Components/Search'
 import AllCategories from './AllCategories'
@@ -12,7 +12,6 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Search></Search>
-      <ProductHighlight additionalStyle={{ marginBottom: 20 }} />
       {
         isLoading ?
           <ActivityIndicator size={55} color={colors.secondary} /> :
@@ -32,6 +31,7 @@ const Home = ({ navigation }) => {
             :
             null
       }
+      {/* <ProductHighlight additionalStyle={{ marginBottom: 20 }} /> */}
       <AllCategories></AllCategories>
     </View>
   )
