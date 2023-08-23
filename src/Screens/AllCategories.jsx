@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 5,
     flex: 1,
-    paddingVertical: 10
+    paddingVertical: 10,
+    overflow: "hidden"
   },
   categoryContainer: {
     marginBottom: 13
