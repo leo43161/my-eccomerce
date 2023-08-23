@@ -3,15 +3,22 @@ import { FlatList, StyleSheet, View, ActivityIndicator, ScrollView, Image } from
 import CategoryItem from '../Components/CategoryItem'
 import { colors } from '../Global/Colors'
 import { useGetCategoriesQuery, useGetCategoriesWithProductsQuery } from '../Services/shopServices'
-import ProductHighlight from '../Components/ProductHighlight'
 import Search from '../Components/Search'
 import AllCategories from './AllCategories'
+import { useSelector } from 'react-redux'
+import ItemListCategory from './ItemListCategory'
+import { useState } from 'react'
 
 const Home = ({ navigation }) => {
   const { data: categories, isLoading, isError } = useGetCategoriesQuery();
+  const categorySelected = useSelector(state => state.shopReducer.value.categorySelected)
+  const [keyword, setKeyword] = useState("");
+  const onSearch = (input) => {
+    setKeyword(input.trim());
+  }
   return (
     <View style={styles.container}>
-      <Search></Search>
+      <Search onSearch={onSearch}></Search>
       {
         isLoading ?
           <ActivityIndicator size={55} color={colors.secondary} /> :
@@ -24,15 +31,15 @@ const Home = ({ navigation }) => {
                 horizontal={true}
                 data={categories}
                 keyExtractor={category => category.id}
-                renderItem={({ item }) => <CategoryItem item={item} navigation={navigation}></CategoryItem>}
+                renderItem={({ item }) => <CategoryItem categorySelected={categorySelected} item={item}></CategoryItem>}
                 showsHorizontalScrollIndicator={false}
               />
             </>
             :
             null
       }
-      {/* <ProductHighlight additionalStyle={{ marginBottom: 20 }} /> */}
-      <AllCategories></AllCategories>
+      {/* <AllCategories></AllCategories> */}
+      <ItemListCategory keyword={keyword}></ItemListCategory>
     </View>
   )
 }

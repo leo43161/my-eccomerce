@@ -9,7 +9,12 @@ export const shopSlice = createSlice({
             allProducts: allProducts,
             categories: allCategories,
             productSelected: {},
-            categorySelected: "",
+            categorySelected: {
+                "id": 1,
+                "title": "Smartphones",
+                "icon": "mobile",
+                "name": "smartphones"
+            },
             productsSelected: []
         }
     },

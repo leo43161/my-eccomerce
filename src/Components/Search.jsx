@@ -8,7 +8,7 @@ const Search = ({
     const [keyword, setKeyword] = useState("");
     const deleteSearch = () => {
         setKeyword("");
-        /* onSearch(""); */
+        onSearch("");
     }
     return (
         <View style={styles.container}>
@@ -28,9 +28,7 @@ const Search = ({
                     />
                 </View>
                 <Pressable style={styles.buttonContainer} onPress={() => onSearch(keyword)}>
-                    <Pressable>
-                        <FontAwesome name="search" size={19} color={colors.light} />
-                    </Pressable>
+                    <FontAwesome name="search" size={19} color={colors.light} />
                 </Pressable>
             </View>
         </View>

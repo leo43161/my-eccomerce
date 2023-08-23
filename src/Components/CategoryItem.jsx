@@ -6,21 +6,20 @@ import { useDispatch } from 'react-redux';
 
 const CategoryItem = ({
     item,
-    navigation
+    categorySelected
 }) => {
 
     const dispatch = useDispatch();
     const onSelectCategory = () => {
         dispatch(setCategorySelected(item));
-        navigation.navigate('Category', { category: item.name });
     }
 
     return (
         <Pressable
             onPress={onSelectCategory}
             style={[styles.cardContainer]}>
-            <View style={[styles.card, item.id === 0 && styles.categorySelected]}>
-                <Text style={[styles.textCategory, item.id === 0 && styles.categorySelectedText]}>{item.title}</Text>
+            <View style={[styles.card, item.id === categorySelected.id && styles.categorySelected]}>
+                <Text style={[styles.textCategory, item.id === categorySelected.id && styles.categorySelectedText]}>{item.title}</Text>
             </View>
         </Pressable>
     )
