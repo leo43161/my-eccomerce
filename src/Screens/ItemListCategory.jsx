@@ -14,7 +14,6 @@ const ItemListCategory = ({
     const { data: productsSelected, isLoading, isError } = useGetProductsByCategoryQuery(categorySelected.name)
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        //Lógica de manejo de category
         if (productsSelected) {
             const productsFiltered = productsSelected.filter(product => product.title.toLocaleLowerCase().includes(keyword.toLowerCase()));
             setProducts(productsFiltered);
@@ -33,7 +32,11 @@ const ItemListCategory = ({
                                 columnWrapperStyle={styles.row}
                                 data={products}
                                 keyExtractor={product => product.id}
-                                renderItem={({ item }) => <ProductItem item={item} navigation={navigation} />}
+                                renderItem={({ item }) =>
+                                    <View style={{ width: "50%" }}>
+                                        <ProductItem item={item} navigation={navigation} />
+                                    </View>
+                                }
                                 showsVerticalScrollIndicator={false}
                             />
                         </>
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
     },
     row: {
         flex: 1,
-        justifyContent: "space-around",
+        justifyContent: "flex-start",
         gap: 10,
         marginBottom: 10
     }

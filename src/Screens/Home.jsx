@@ -38,8 +38,7 @@ const Home = ({ navigation }) => {
             :
             null
       }
-      {/* <AllCategories></AllCategories> */}
-      <ItemListCategory keyword={keyword}></ItemListCategory>
+      {categorySelected.id === 0 ? <AllCategories keyword={keyword} navigation={navigation}></AllCategories> : <ItemListCategory navigation={navigation} keyword={keyword}></ItemListCategory>}
     </View>
   )
 }
