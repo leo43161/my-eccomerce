@@ -37,9 +37,10 @@ const Header = ({ route, navigation }) => {
                 <Text numberOfLines={1} style={[styles.text]}>{routes[route.name] ? routes[route.name] : route.name}</Text>
             </View>
             <View style={styles.containerThird}>
-                {email && <Pressable onPress={singOut} style={styles.containerButton}>
+                {email ? <Pressable onPress={singOut} style={styles.containerButton}>
                     <FontAwesome name="sign-out" size={24} color="black" />
-                </Pressable>}
+                </Pressable>
+                    : null}
 
             </View>
         </View>

@@ -33,7 +33,7 @@ const ItemListCategory = ({
                                 data={products}
                                 keyExtractor={product => product.id}
                                 renderItem={({ item }) =>
-                                    <View style={{ width: "50%" }}>
+                                    <View style={{ flex: 1 }}>
                                         <ProductItem item={item} navigation={navigation} />
                                     </View>
                                 }
@@ -52,14 +52,12 @@ export default ItemListCategory
 const styles = StyleSheet.create({
     container: {
         width: "100%",
-        paddingHorizontal: 0,
         flex: 1,
-        paddingVertical: 10
     },
     itemContainer: {
         width: '100%',
         paddingVertical: 10,
-        paddingHorizontal: 15,
+        paddingHorizontal: 5,
     },
     row: {
         flex: 1,

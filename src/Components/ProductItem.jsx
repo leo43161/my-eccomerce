@@ -24,10 +24,10 @@ const ProductItem = ({ item, navigation }) => {
                     />
                 </View>
                 <View style={styles.infoContainer}>
-                    <Text style={styles.titleProduct}>
+                    <Text numberOfLines={1} style={styles.titleProduct}>
                         Silla de Oficina
                     </Text>
-                    <Text style={styles.descriptionProduct}>
+                    <Text numberOfLines={2} style={styles.descriptionProduct}>
                         Lorem ipsum dolor, sit amet consectetur
                     </Text>
                     <View style={styles.priceContainer}>
@@ -44,7 +44,7 @@ export default ProductItem
 
 const styles = StyleSheet.create({
     cardContainer: {
-        flex: 2
+        flex: 1
     },
     image: {
         width: "100%",
@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
     },
     priceContainer: {
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        alignItems: "center"
     },
     infoContainer: {
         paddingHorizontal: 15,
@@ -73,12 +74,12 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     price: {
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: "bold",
         color: colors.primary,
     },
     offer: {
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: "500",
         color: colors.gray300,
         textDecorationLine: "line-through"

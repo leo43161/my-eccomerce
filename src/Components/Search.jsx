@@ -14,10 +14,11 @@ const Search = ({
         <View style={styles.container}>
             <View style={styles.searchContainer}>
                 <View style={styles.inputContainer}>
-                    {keyword.trim() &&
+                    {keyword.trim() ?
                         <Pressable onPress={deleteSearch}>
                             <FontAwesome name="close" size={19} color={colors.light} />
                         </Pressable>
+                        : null
                     }
                     <TextInput
                         style={[styles.input]}

@@ -53,10 +53,11 @@ const Cart = ({ navigation }) => {
         </View>
         <View style={styles.buttonsContainer}>
           {
-            CartData.length > 0 &&
+            CartData.length > 0 ?
             <Pressable style={styles.buttonBuy} onPress={onBuyHandler}>
               <Text style={[styles.buttonText, styles.buttonTextBuy]}>Comprar</Text>
             </Pressable>
+            : null
           }
 
         </View>

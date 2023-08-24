@@ -18,8 +18,8 @@ const CategoryItem = ({
         <Pressable
             onPress={onSelectCategory}
             style={[styles.cardContainer]}>
-            <View style={[styles.card, item.id === categorySelected.id && styles.categorySelected]}>
-                <Text style={[styles.textCategory, item.id === categorySelected.id && styles.categorySelectedText]}>{item.title}</Text>
+            <View style={[styles.card, item.id === categorySelected.id ? styles.categorySelected : null]}>
+                <Text style={[styles.textCategory, item.id === categorySelected.id ? styles.categorySelectedText : null]}>{item.title}</Text>
             </View>
         </Pressable>
     )

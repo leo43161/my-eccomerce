@@ -18,10 +18,11 @@ const CartItem = ({ cartItem }) => {
                 </View>
                 <View style={styles.quantityContainer}>
                     <View style={styles.quantityCol}>
-                        {cartItem.quantity > 1 &&
+                        {cartItem.quantity > 1 ?
                             <Pressable style={styles.buttonQuantity} onPress={() => { dispatch(removeItem(cartItem.id)) }}>
                                 <FontAwesome name="minus" size={20} color="black" />
                             </Pressable>
+                            : null
                         }
                     </View>
                     <View style={styles.quantityCol}>
@@ -34,7 +35,7 @@ const CartItem = ({ cartItem }) => {
                     </View>
                 </View>
                 <Pressable onPress={() => { dispatch(removeCartItem(cartItem.id)) }}>
-                <FontAwesome name="trash" size={30} color="black" />
+                    <FontAwesome name="trash" size={30} color="black" />
                 </Pressable>
             </Card>
         </Pressable>
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     },
     quantityCol: {
         flex: 1,
-        alignItems:"center"
+        alignItems: "center"
     },
     quantityContainer: {
         width: "23%",

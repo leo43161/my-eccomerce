@@ -20,44 +20,42 @@ const AllCategories = ({ keyword, navigation }) => {
   }, [keyword]);
 
   return (
-    <ScrollView style={styles.container}>
-      {keyword === "" && <ProductHighlight></ProductHighlight>}
-      {
-        isLoading ?
-          <ActivityIndicator size={55} color={colors.secondary} /> :
-          !isError ?
-            <> {
-              keyword !== "" ?
-                <FlatList
-                  style={styles.itemContainer}
-                  numColumns={2}
-                  columnWrapperStyle={styles.row}
-                  data={productsSearch}
-                  keyExtractor={product => product.id}
-                  renderItem={({ item }) =>
-                    <View style={{ width: "50%" }}>
-                      <ProductItem item={item} navigation={navigation} />
-                    </View>
-                  }
-                  showsVerticalScrollIndicator={false}
-                />
-                :
-                categories.map((category) =>
-                  <View key={category.id} style={styles.categoryContainer}>
-                    <View style={styles.titleCategoryContainer}>
-                      <Text style={styles.titleCategory}>{category.title}</Text>
-                      <Text style={styles.verMas}>Ver todo</Text>
-                    </View>
-                    <View style={styles.cardsContainer}>
-                      {category.products.map(product => <ProductItem key={product.id} product={product}></ProductItem>)}
-                    </View>
-                  </View>)
+    isLoading ?
+      <ActivityIndicator size={55} color={colors.secondary} /> :
+      !isError ?
+        keyword !== "" ?
+          <View style={styles.container}>
+            <FlatList
+              style={styles.itemContainer}
+              numColumns={2}
+              columnWrapperStyle={styles.row}
+              data={productsSearch}
+              keyExtractor={product => product.id}
+              renderItem={({ item }) =>
+                <View style={{ width: "50%" }}>
+                  <ProductItem item={item} navigation={navigation} />
+                </View>
+              }
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+          :
+          <ScrollView style={styles.container}>
+            {keyword === "" && <ProductHighlight></ProductHighlight>}
+            {
+              categories.map((category) =>
+                <View key={category.id} style={styles.categoryContainer}>
+                  <View style={styles.titleCategoryContainer}>
+                    <Text style={styles.titleCategory}>{category.title}</Text>
+                    <Text style={styles.verMas}>Ver todo</Text>
+                  </View>
+                  <View style={styles.cardsContainer}>
+                    {category.products.map(product => <ProductItem key={product.id} product={product}></ProductItem>)}
+                  </View>
+                </View>)
             }
-            </>
-            : null
-      }
-    </ScrollView>
-
+          </ScrollView>
+        : null
   )
 }
 
