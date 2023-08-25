@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../Components/Header'
+import Header from '../Components/HeaderShop'
 import ItemListCategory from '../Screens/ItemListCategory'
 import ItemDetails from '../Screens/ItemDetails'
 import Home from '../Screens/Home'

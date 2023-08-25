@@ -50,7 +50,7 @@ const AllCategories = ({ keyword, navigation }) => {
                     <Text style={styles.verMas}>Ver todo</Text>
                   </View>
                   <View style={styles.cardsContainer}>
-                    {category.products.map(product => <ProductItem key={product.id} product={product}></ProductItem>)}
+                    {category.products.map(product => <ProductItem key={product.id} item={product} navigation={navigation}></ProductItem>)}
                   </View>
                 </View>)
             }

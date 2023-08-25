@@ -9,8 +9,8 @@ import { setProductSelected } from '../Features/shop/shopSlice';
 const ProductItem = ({ item, navigation }) => {
     const dispatch = useDispatch();
     const onSelectProduct = () => {
-        /* dispatch(setProductSelected(item));
-        navigation.navigate('Product', { title: item.title }); */
+        dispatch(setProductSelected(item));
+        navigation.navigate('Product');
     }
 
     return (

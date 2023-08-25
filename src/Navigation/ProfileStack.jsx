@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../Components/Header'
+import Header from '../Components/HeaderShop'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import MyProfile from '../Screens/MyProfile'
 import ImageSelector from '../Screens/ImageSelector'

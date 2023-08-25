@@ -11,7 +11,6 @@ import AuthStack from './AuthStack';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileStack from './ProfileStack';
 import { getSession } from '../SQLite';
-import { setUser } from '../Features/user/userSlice';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +36,7 @@ const Navigator = () => {
     return (
         <SafeAreaView style={styles.container}>
             <NavigationContainer>
-                {true ? <>
+                {email ? <>
                     <Tab.Navigator
                         initialRouteName='Shop'
                         screenOptions={{
