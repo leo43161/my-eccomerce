@@ -15,7 +15,7 @@ const OrderItem = ({ order }) => {
             <Card additionalStyle={styles.card}>
                 <View style={styles.textContainer}>
                     <Text style={styles.texInfo}>
-                        {new Date(order.createdAt).toLocaleString()}
+                        {order.updatedAt}
                     </Text>
                     <Text style={styles.textPrice}>${total}</Text>
                 </View>

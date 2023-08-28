@@ -7,9 +7,11 @@ import { usePostCartMutation } from '../Services/shopServices';
 
 const Cart = ({ navigation }) => {
   const { items: CartData, total, updatedAt, user } = useSelector(state => state.cartReducer.value);
+  const { localId } = useSelector(state => state.userReducer.value);
+  console.log(localId)
   const [triggerPostCart, result] = usePostCartMutation();
   const onBuyHandler = () => {
-    triggerPostCart({ user, updatedAt, total, items: CartData }).then((response) => {
+    triggerPostCart({ order: { user, updatedAt, total, items: CartData }, localId }).then((response) => {
       console.log(response);
       if (response.data) {
         navigation.navigate('Orders');
@@ -22,6 +24,7 @@ const Cart = ({ navigation }) => {
       <FlatList
         data={CartData}
         keyExtractor={cartItem => cartItem.id}
+        style={styles.containerCarts}
         renderItem={({ item }) => {
           return (
             <CartItem
@@ -30,6 +33,7 @@ const Cart = ({ navigation }) => {
           )
         }}
       />
+
       <View style={styles.buyContainer}>
         <View style={styles.buysContainer}>
           <FlatList
@@ -54,10 +58,10 @@ const Cart = ({ navigation }) => {
         <View style={styles.buttonsContainer}>
           {
             CartData.length > 0 ?
-            <Pressable style={styles.buttonBuy} onPress={onBuyHandler}>
-              <Text style={[styles.buttonText, styles.buttonTextBuy]}>Comprar</Text>
-            </Pressable>
-            : null
+              <Pressable style={styles.buttonBuy} onPress={onBuyHandler}>
+                <Text style={[styles.buttonText, styles.buttonTextBuy]}>Comprar</Text>
+              </Pressable>
+              : null
           }
 
         </View>
@@ -72,7 +76,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     flex: 1,
-    backgroundColor: colors.light
+    backgroundColor: "#FFFF",
+  },
+  containerCarts: {
+    padding: 10
   },
   totalContainer: {
     borderTopColor: "#F3F3F3",

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { colors } from "../Global/Colors";
 import { FontAwesome } from "@expo/vector-icons";
@@ -11,32 +11,45 @@ const CartItem = ({ cartItem }) => {
     return (
         <Pressable onPress={() => { }}>
             <Card additionalStyle={styles.card}>
-                <View style={styles.textContainer}>
-                    <Text style={styles.title}>{cartItem.title}</Text>
-                    <Text style={styles.subtitle}>{cartItem.brand}</Text>
-                    <Text style={styles.subtitle}>${cartItem.price}</Text>
+                <View style={styles.imgContainer}>
+                    <Image
+                        resizeMode='cover'
+                        style={styles.image}
+                        source={require('../Assets/Img/mueble2.png')}
+                    />
                 </View>
-                <View style={styles.quantityContainer}>
-                    <View style={styles.quantityCol}>
-                        {cartItem.quantity > 1 ?
-                            <Pressable style={styles.buttonQuantity} onPress={() => { dispatch(removeItem(cartItem.id)) }}>
-                                <FontAwesome name="minus" size={20} color="black" />
-                            </Pressable>
-                            : null
-                        }
-                    </View>
-                    <View style={styles.quantityCol}>
-                        <Text>{cartItem.quantity}</Text>
-                    </View>
-                    <View style={styles.quantityCol}>
-                        <Pressable style={styles.buttonQuantity} onPress={() => { dispatch(addItem(cartItem.id)) }}>
-                            <FontAwesome name="plus" size={20} color="black" />
+                <View style={styles.infoContainer}>
+                    <View style={styles.textContainer}>
+                        <View>
+                            <Text style={styles.title}>{cartItem.title}</Text>
+                            <Text style={styles.subtitle}>{cartItem.brand}</Text>
+                        </View>
+                        <Pressable style={styles.buttonTrash} onPress={() => { dispatch(removeCartItem(cartItem.id)) }}>
+                            <FontAwesome name="trash" size={20} color={"black"} />
                         </Pressable>
                     </View>
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.price}>${cartItem.price}</Text>
+                        <View style={styles.quantityContainer}>
+                            <View style={styles.quantityCol}>
+                                {cartItem.quantity > 1 ?
+                                    <Pressable style={[styles.buttonQuantity, styles.buttonMine]} onPress={() => { dispatch(removeItem(cartItem.id)) }}>
+                                        <FontAwesome name="minus" size={11} color="black" />
+                                    </Pressable>
+                                    : null
+                                }
+                            </View>
+                            <View style={styles.quantityCol}>
+                                <Text>{cartItem.quantity}</Text>
+                            </View>
+                            <View style={styles.quantityCol}>
+                                <Pressable style={[styles.buttonQuantity, styles.buttonPlus]} onPress={() => { dispatch(addItem(cartItem.id)) }}>
+                                    <FontAwesome name="plus" size={11} color="black" />
+                                </Pressable>
+                            </View>
+                        </View>
+                    </View>
                 </View>
-                <Pressable onPress={() => { dispatch(removeCartItem(cartItem.id)) }}>
-                    <FontAwesome name="trash" size={30} color="black" />
-                </Pressable>
             </Card>
         </Pressable>
     );
@@ -46,35 +59,64 @@ export default CartItem;
 
 const styles = StyleSheet.create({
     card: {
-        height: 100,
-        padding: 18,
-        margin: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 12,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
+        width: "100%",
+        alignSelf: "stretch"
+    },
+    imgContainer: {
+        flex: 2,
+    },
+    image: {
+        width: "100%",
+        height: "100%",
+    },
+    infoContainer: {
+        flex: 6,
+        justifyContent: "space-between",
+        paddingLeft: 10
     },
     textContainer: {
-        width: "60%",
-        flexDirection: "column",
-        justifyContent: "flex-start",
+        flex: 2,
+        flexDirection: "row",
+        justifyContent: "space-between",
         alignItems: "flex-start",
+        marginBottom: 5
     },
     quantityCol: {
         flex: 1,
         alignItems: "center"
     },
-    quantityContainer: {
-        width: "23%",
+    priceContainer: {
+        flex: 1,
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
-        gap: 4,
     },
     buttonQuantity: {
         backgroundColor: colors.primary,
         paddingVertical: 5,
         paddingHorizontal: 7,
-        borderRadius: 9,
+        borderRadius: 15,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    buttonTrash: {
+        paddingVertical: 4,
+        paddingHorizontal: 5,
+        borderRadius: 8,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    buttonPlus: {
+        backgroundColor: colors.primary,
+    },
+    buttonMine: {
+        borderColor: colors.primary,
+        backgroundColor: "transparent",
     },
     title: {
         fontFamily: "BROmega",
@@ -84,6 +126,22 @@ const styles = StyleSheet.create({
     subtitle: {
         fontFamily: "BROmega",
         fontSize: 14,
-        color: colors.peach,
+        color: colors.gray300,
     },
+    price: {
+        fontFamily: "BROmega",
+        fontSize: 17,
+        fontWeight: "bold",
+        color: colors.dark,
+    },
+    quantityContainer: {
+        flexDirection: "row",
+        backgroundColor: colors.gray200,
+        justifyContent: "flex-start",
+        alignItems: "center",
+        paddingVertical: 3,
+        paddingHorizontal: 2,
+        width: "35%",
+        borderRadius: 15,
+    }
 });
