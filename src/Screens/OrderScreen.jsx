@@ -9,7 +9,6 @@ const OrderScreen = () => {
   const { allOrders: OrderData, total } = useSelector(state => state.ordersReducer.value);
   const { localId } = useSelector(state => state.userReducer.value);
   const { data: orders, isLoading, isError } = useGetOrdersQuery(localId);
-  console.log(orders, isLoading, isError)
   return (
     <View style={styles.container}>
       {isLoading ?
@@ -18,7 +17,7 @@ const OrderScreen = () => {
           <Text>Ocurrio un error</Text> :
           <FlatList
             data={orders}
-            keyExtractor={orderItem => orderItem.updatedAt}
+            keyExtractor={orderItem => orderItem.id}
             renderItem={({ item }) => {
               return (
                 <OrderItem

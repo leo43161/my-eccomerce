@@ -8,6 +8,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { saveImage } from '../Features/user/userSlice';
 import * as MediaLibrary from 'expo-media-library';
 import Card from '../Components/Card';
+import ButtonProfile from '../Components/ButtonProfile';
 
 const MyProfile = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -27,7 +28,6 @@ const MyProfile = ({ navigation }) => {
     };
 
     const cameraHandler = async () => {
-        //Permission for camera
         const isCameraPermissed = await verifyCameraPermissions();
         const { status } = await MediaLibrary.requestPermissionsAsync();
         console.log(isCameraPermissed)
@@ -47,7 +47,6 @@ const MyProfile = ({ navigation }) => {
                     localId: localId
                 });
                 console.log(response)
-                // Set image on redux state
                 dispatch(saveImage(response.uri));
             }
         }
@@ -80,6 +79,11 @@ const MyProfile = ({ navigation }) => {
                     </View>
                 </View>
             </View>
+            <View style={styles.containerButtons}>
+                <ButtonProfile icon="user" title="My Profile" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
+                <ButtonProfile icon="list-alt" title="My Orders" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
+                <ButtonProfile icon="sign-out" title="Logout" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
+            </View>
         </View>
     )
 }
@@ -88,7 +92,6 @@ export default MyProfile
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'space-between',
         flex: 1,
         backgroundColor: colors.light
     },
@@ -103,21 +106,19 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: "BROmega"
     },
-    profileHeadContainer: {
-
-    },
     profileInfoHead: {
         alignItems: "center",
         justifyContent: "space-between"
     },
     buttonLocation: {
         paddingVertical: 7,
-        paddingHorizontal: 10,
+        paddingHorizontal: 12,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
         gap: 6,
-        maxWidth: 300
+        maxWidth: 250,
+        backgroundColor: colors.light
     },
     profileHeadBottom: {
         width: "100%"
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     headerContainer: {
         justifyContent: 'space-between',
         alignItems: "center",
-        height: 400,
+        height: 320,
         width: "100%",
         backgroundColor: colors.primary,
         padding: 15
@@ -162,4 +163,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.secondary,
         borderColor: "white",
     },
+    containerButtons: {
+        paddingHorizontal: 18,
+        paddingTop: 18,
+        gap: 18
+    }
 })

@@ -4,21 +4,19 @@ import CartItem from '../Components/CartItem';
 import { colors } from '../Global/Colors';
 import { useSelector } from 'react-redux';
 import { usePostCartMutation } from '../Services/shopServices';
+import uuid from 'react-native-uuid';
 
 const Cart = ({ navigation }) => {
   const { items: CartData, total, updatedAt, user } = useSelector(state => state.cartReducer.value);
   const { localId } = useSelector(state => state.userReducer.value);
-  console.log(localId)
   const [triggerPostCart, result] = usePostCartMutation();
   const onBuyHandler = () => {
-    triggerPostCart({ order: { user, updatedAt, total, items: CartData }, localId }).then((response) => {
-      console.log(response);
+    triggerPostCart({ order: { id: uuid.v4(), user, updatedAt, total, items: CartData }, localId }).then((response) => {
       if (response.data) {
         navigation.navigate('Orders');
       }
     })
   }
-  console.log(result);
   return (
     <View style={styles.container}>
       <FlatList
