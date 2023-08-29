@@ -1,4 +1,4 @@
-import * as SQLite from 'expo-sqlite';
+import * as SQLite from 'expo-sqlite'
 
 //Generar un archivo (Win: Documents)
 const db = SQLite.openDatabase('sessions.db')

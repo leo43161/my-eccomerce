@@ -53,7 +53,6 @@ export const shopApi = createApi({
         getProductById: builder.query({
             query: (productId) => `products.json?orderBy="id"&equalTo=${productId}`,
             transformResponse: (response) => {
-                console.log(response);
                 const productTransformed = Object.values(response).pop()
                 return (productTransformed)
             }

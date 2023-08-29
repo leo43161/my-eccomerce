@@ -11,6 +11,7 @@ import AuthStack from './AuthStack';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileStack from './ProfileStack';
 import { getSession } from '../SQLite';
+import { setUser } from '../Features/user/userSlice';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,8 +24,10 @@ const Navigator = () => {
         (async () => {
             try {
                 const session = await getSession()
+                console.log(session)
                 if (session?.rows.length) {
                     const user = session.rows._array[0]
+                    dispatch(setUser(user))
                 }
             } catch (error) {
                 console.log('Error getting session');

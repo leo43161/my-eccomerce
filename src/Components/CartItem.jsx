@@ -9,7 +9,6 @@ import { addItem, removeCartItem, removeItem } from "../Features/cart/cartSlice"
 const CartItem = ({ cartItem }) => {
     const dispatch = useDispatch();
     return (
-        <Pressable onPress={() => { }}>
             <Card additionalStyle={styles.card}>
                 <View style={styles.imgContainer}>
                     <Image
@@ -51,7 +50,6 @@ const CartItem = ({ cartItem }) => {
                     </View>
                 </View>
             </Card>
-        </Pressable>
     );
 };
 
@@ -65,7 +63,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
-        alignSelf: "stretch"
+        alignSelf: "stretch",
+        height: 120,
+        marginBottom: 15
     },
     imgContainer: {
         flex: 2,
