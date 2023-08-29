@@ -3,9 +3,9 @@ import React from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
 
-const ButtonProfile = ({ icon, title, colorsIcon, color }) => {
+const ButtonProfile = ({ icon, title, colorsIcon, color, onPress }) => {
     return (
-        <Pressable style={styles.buttonEditProfile}>
+        <Pressable onPress={onPress} style={styles.buttonEditProfile}>
             <View style={styles.titleEditProfile}>
                 <View style={{ backgroundColor: color, ...styles.iconEditProfile }}>
                     <FontAwesome name={icon} size={22} color={colorsIcon} />

@@ -9,7 +9,7 @@ import uuid from 'react-native-uuid';
 const Cart = ({ navigation }) => {
   const { items: CartData, total, updatedAt, user } = useSelector(state => state.cartReducer.value);
   const { localId } = useSelector(state => state.userReducer.value);
-  const [triggerPostCart, result] = usePostCartMutation();
+  const [triggerPostCart] = usePostCartMutation();
   const onBuyHandler = () => {
     triggerPostCart({ order: { id: uuid.v4(), user, updatedAt, total, items: CartData }, localId }).then((response) => {
       if (response.data) {

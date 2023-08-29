@@ -5,10 +5,11 @@ import { FontAwesome } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetProfileImageQuery, useGetUserLocationQuery, usePostProfileImageMutation } from '../Services/shopServices';
 import * as ImagePicker from 'expo-image-picker';
-import { saveImage } from '../Features/user/userSlice';
+import { logOut, saveImage } from '../Features/user/userSlice';
 import * as MediaLibrary from 'expo-media-library';
 import Card from '../Components/Card';
 import ButtonProfile from '../Components/ButtonProfile';
+import { deleteSession } from '../SQLite';
 
 const MyProfile = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -51,6 +52,20 @@ const MyProfile = ({ navigation }) => {
             }
         }
     };
+
+    const singOut = async () => {
+        try {
+            console.log("Deleting session...");
+            const response = await deleteSession(localId)
+            console.log("Session deleted: ")
+            console.log(response)
+            dispatch(logOut())
+        } catch (error) {
+            console.log('Error while sign out:')
+            console.log(error.message);
+        }
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -80,9 +95,9 @@ const MyProfile = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.containerButtons}>
-                <ButtonProfile icon="user" title="My Profile" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
-                <ButtonProfile icon="list-alt" title="My Orders" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
-                <ButtonProfile icon="sign-out" title="Logout" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
+                <ButtonProfile onPress={""} icon="user" title="My Profile" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
+                <ButtonProfile onPress={singOut} icon="list-alt" title="My Orders" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
+                <ButtonProfile onPress={singOut} icon="sign-out" title="Logout" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
             </View>
         </View>
     )

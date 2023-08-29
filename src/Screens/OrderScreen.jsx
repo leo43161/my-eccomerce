@@ -1,14 +1,19 @@
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import OrderItem from '../Components/OrderItem'
 import { colors } from '../Global/Colors'
 import { useSelector } from 'react-redux'
 import { useGetOrdersQuery } from '../Services/shopServices'
 
-const OrderScreen = () => {
-  const { allOrders: OrderData, total } = useSelector(state => state.ordersReducer.value);
+const OrderScreen = ({ navigation }) => {
   const { localId } = useSelector(state => state.userReducer.value);
-  const { data: orders, isLoading, isError } = useGetOrdersQuery(localId);
+  const { data: orders, isLoading, isError, refetch } = useGetOrdersQuery(localId);
+  useEffect(() => {
+    const reloadOrders = navigation.addListener('focus', () => {
+      refetch();
+    });
+    return reloadOrders;
+  }, [navigation, refetch]);
   return (
     <View style={styles.container}>
       {isLoading ?
