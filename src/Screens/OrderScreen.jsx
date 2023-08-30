@@ -8,15 +8,18 @@ import { useGetOrdersQuery } from '../Services/shopServices'
 const OrderScreen = ({ navigation }) => {
   const { localId } = useSelector(state => state.userReducer.value);
   const { data: orders, isLoading, isError, refetch } = useGetOrdersQuery(localId);
-  useEffect(() => {
+  /* useEffect(() => {
     const reloadOrders = navigation.addListener('focus', () => {
       refetch();
     });
     return reloadOrders;
-  }, [navigation, refetch]);
+  }, [navigation, refetch]); */
+  console.log(orders);
+  console.log(isLoading);
+  console.log(isError);
   return (
     <View style={styles.container}>
-      {isLoading ?
+      {/* {isLoading ?
         <ActivityIndicator size={55} color={colors.secondary} />
         : isError ?
           <Text>Ocurrio un error</Text> :
@@ -31,7 +34,7 @@ const OrderScreen = ({ navigation }) => {
               )
             }}
           />}
-
+ */}
     </View>
   )
 }
