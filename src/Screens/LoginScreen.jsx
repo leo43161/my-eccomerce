@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import InputForm from "../Components/InputForm";
 import SubmitButton from "../Components/SubmitButton";
@@ -74,30 +74,40 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.main}>
             <View style={styles.container}>
                 <View style={styles.containerHeader}>
-                    <Text style={styles.title}>Hello Again!</Text>
+                    <View style={styles.imageContainer}>
+                        <Image
+                            resizeMode='center'
+                            style={styles.image}
+                            source={require('../Assets/Img/mueble2.png')}
+                        ></Image>
+                    </View>
+                    <Text style={styles.title}>Login Now</Text>
                     <Text style={styles.subTitle}>Welcome back you've been missed!</Text>
                 </View>
-                <InputForm
-                    label={"email"}
-                    onChange={(email) => setEmail(email)}
-                    error={errorEmail}
-                />
-                <InputForm
-                    label={"password"}
-                    onChange={(password) => setPassword(password)}
-                    error={errorPassword}
-                    isSecure={true}
-                />
+                <View style={styles.containerInputs}>
+                    <InputForm
+                        label={"Email"}
+                        onChange={(email) => setEmail(email)}
+                        error={errorEmail}
+                    />
+                    <InputForm
+                        label={"Password"}
+                        onChange={(password) => setPassword(password)}
+                        error={errorPassword}
+                        isSecure={true}
+                    />
+                    <Pressable onPress={() => navigation.navigate("Signup")}>
+                        <Text style={styles.subLink}>Forgon Password?</Text>
+                    </Pressable>
+                </View>
                 <SubmitButton onPress={onSubmit} title="Sing in" />
-                <Text style={styles.sub}>Not have an account?</Text>
-                <Pressable onPress={() => navigation.navigate("Signup")}>
-                    <Text style={styles.subLink}>Sign up</Text>
-                </Pressable>
-                <Pressable onPress={deleteSession}>
-                    <Text style={styles.subLink}>Borrar Session</Text>
-                </Pressable>
+                <View style={styles.registerText}>
+                    <Text style={styles.sub}>Not have an account?</Text>
+                    <Pressable onPress={() => navigation.navigate("Signup")}>
+                        <Text style={styles.subLink}>Sign up</Text>
+                    </Pressable>
+                </View>
             </View>
-
         </View>
     )
 }
@@ -110,13 +120,15 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        backgroundColor: "white"
     },
     container: {
         width: '100%',
         height: '90%',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        gap: 0
     },
     containerHeader: {
         alignItems: 'center',
@@ -124,12 +136,13 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        fontFamily: 'BROmega'
+        fontFamily: 'BROmega',
     },
     subTitle: {
-        fontSize: 20,
+        fontSize: 15,
         fontFamily: 'BROmega',
-        textAlign: 'center'
+        textAlign: 'center',
+        color: colors.gray300
     },
     sub: {
         fontSize: 14,
@@ -137,6 +150,23 @@ const styles = StyleSheet.create({
     },
     subLink: {
         fontSize: 14,
-        color: 'blue',
+        color: colors.primary,
+        textAlign: "right"
+    },
+    image: {
+        height: 180,
+        width: 300
+    },
+    imageContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    registerText: {
+        flexDirection: "row",
+        gap: 4
+    },
+    containerInputs: {
+        width: "100%",
+        gap: 12
     }
 })

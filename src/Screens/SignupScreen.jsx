@@ -69,24 +69,30 @@ const SignupScreen = ({ navigation }) => {
     <View style={styles.main}>
       <View style={styles.container}>
         <Text style={styles.title}>Signup</Text>
-        <InputForm label={"email"} onChange={setEmail} error={errorMail} />
         <InputForm
-          label={"password"}
+          label={"Email"}
+          onChange={setEmail}
+          error={errorMail}
+        />
+        <InputForm
+          label={"Password"}
           onChange={setPassword}
           error={errorPassword}
           isSecure={true}
         />
         <InputForm
-          label={"confirm password"}
+          label={"Confirm Password"}
           onChange={setconfirmPassword}
           error={errorConfirmPassword}
           isSecure={true}
         />
-        <SubmitButton onPress={onSubmit} title="Send" />
-        <Text style={styles.textSmall}>Already have an account?</Text>
-        <Pressable onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.textLink}>Login</Text>
-        </Pressable>
+        <SubmitButton onPress={onSubmit} title="Sign up" />
+        <View style={styles.registerText}>
+          <Text style={styles.textSmall}>Already have an account?</Text>
+          <Pressable onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.textLink}>Login</Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -100,11 +106,13 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#FFFFFF"
   },
   container: {
     width: "90%",
+    height: "90%",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: colors.lightPink,
     gap: 15,
@@ -112,7 +120,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    fontSize: 22,
+    fontSize: 27,
     fontFamily: "BROmega",
   },
   textSmall: {
@@ -123,6 +131,10 @@ const styles = StyleSheet.create({
   textLink: {
     fontSize: 14,
     fontFamily: "BROmega",
-    color: "black",
+    color: colors.primary,
+  },
+  registerText: {
+    flexDirection: "row",
+    gap: 4
   },
 });
