@@ -18,7 +18,7 @@ export const shopApi = createApi({
                     if (matchingProducts.length > 0) {
                         accumulator.push({
                             id: category.id,
-                            category: category.name,
+                            name: category.name,
                             title: category.title,
                             products: matchingProducts.slice(0, 2)
                         });

@@ -1,5 +1,4 @@
-import React from 'react'
-import Header from '../Components/HeaderShop'
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import LoginScreen from '../Screens/LoginScreen';
 import SignupScreen from '../Screens/SignupScreen';

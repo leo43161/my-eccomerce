@@ -1,12 +1,15 @@
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View, FlatList } from 'react-native'
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View, FlatList, Pressable } from 'react-native'
 import React from 'react'
 import { colors } from '../Global/Colors'
 import ProductItem from '../Components/ProductItem'
 import { useGetCategoriesWithProductsQuery, useGetProductsQuery } from '../Services/shopServices'
 import ProductHighlight from '../Components/ProductHighlight'
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setCategorySelected } from '../Features/shop/shopSlice'
 
 const AllCategories = ({ keyword, navigation }) => {
+  const dispatch = useDispatch()
   const { data: categories, isLoading, isError } = useGetCategoriesWithProductsQuery();
   const { data: products } = useGetProductsQuery();
 
@@ -18,6 +21,11 @@ const AllCategories = ({ keyword, navigation }) => {
       setProductsSearch(productsFiltered);
     }
   }, [keyword]);
+
+  const setCategories = (categoryWithProducts) => {
+    const { products, ...category } = categoryWithProducts;
+    dispatch(setCategorySelected(category));
+  }
 
   return (
     isLoading ?
@@ -47,7 +55,9 @@ const AllCategories = ({ keyword, navigation }) => {
                 <View key={category.id} style={styles.categoryContainer}>
                   <View style={styles.titleCategoryContainer}>
                     <Text style={styles.titleCategory}>{category.title}</Text>
-                    <Text style={styles.verMas}>Ver todo</Text>
+                    <Pressable onPress={() => setCategories(category)}>
+                      <Text style={styles.verMas}>Ver todo</Text>
+                    </Pressable>
                   </View>
                   <View style={styles.cardsContainer}>
                     {category.products.map(product => <ProductItem key={product.id} item={product} navigation={navigation}></ProductItem>)}

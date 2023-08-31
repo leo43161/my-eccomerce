@@ -1,6 +1,7 @@
 import { FlatList, Pressable, StyleSheet, View, Text } from 'react-native'
 import React from 'react'
 import { colors } from '../Global/Colors'
+import { FontAwesome } from '@expo/vector-icons';
 import LocationItem from '../Components/LocationItem'
 import { useSelector } from 'react-redux'
 import { useGetUserLocationQuery } from '../Services/shopServices'
@@ -20,18 +21,22 @@ const ListLocationScreen = ({ navigation }) => {
         renderItem={({ item }) => {
           return (
             <LocationItem
-            location={item}
-            navigation={navigation}
+              location={item}
+              navigation={navigation}
             />
           )
         }}
       />
     </View>
   ) : (<View style={styles.container}>
-    <Text style={styles.text}>No location set</Text>
+    <Text style={styles.textNoLocation}>No location set</Text>
     <Pressable onPress={() => navigation.navigate("Location Selector")}>
-      <Card>
+      <Card additionalStyle={styles.card}>
         <Text style={styles.text}>Set location</Text>
+        <View style={styles.changeContainer}>
+          <FontAwesome name="map-marker" size={30} color="black" />
+          <Text>Change</Text>
+        </View>
       </Card>
     </Pressable>
   </View>)
@@ -41,14 +46,34 @@ export default ListLocationScreen
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.light,
+    backgroundColor: "#FFFFFF",
     flex: 1,
-    paddingHorizontal: 18,
+    paddingHorizontal: 20,
     paddingVertical: 18
   },
   text: {
+    fontFamily: "BROmega",
+    fontSize: 19,
+    color: colors.dark,
+    fontWeight: "bold",
+  },
+  textNoLocation: {
+    fontFamily: "BROmega",
+    fontSize: 19,
+    color: colors.dark,
+    fontWeight: "bold",
+    marginBottom: 18
+  },
+  card: {
+    paddingHorizontal: 10,
     paddingVertical: 20,
-    fontFamily: 'BROmega',
-    fontSize: 18
-  }
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF"
+  },
+  changeContainer: {
+    alignItems: "center",
+    gap: 5
+}
 })

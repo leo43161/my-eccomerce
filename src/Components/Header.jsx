@@ -2,17 +2,14 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from '../Features/user/userSlice';
-import { deleteSession } from '../SQLite';
 import { colors } from '../Global/Colors';
 
 const Header = ({ route, navigation }) => {
     const routes = {
         "Home": "Home",
         "CartScreen": "My Cart",
-        "OrdersScreen": "Orders",
-        "Login": "Login",
-        "Signup": "Signup",
+        "Profile": "My Profile",
+        "OrdersScreen": "My Orders",
     }
     return (
         <View style={styles.containerHeader}>
@@ -24,7 +21,7 @@ const Header = ({ route, navigation }) => {
                 <View style={styles.containerButton}></View>
             }
             <View style={styles.containerTitle}>
-                <Text numberOfLines={1} style={[styles.textTitle]}>{routes[route.name]}</Text>
+                <Text numberOfLines={1} style={[styles.textTitle]}>{routes[route.name] ? routes[route.name] : route.name}</Text>
             </View>
             <View style={styles.containerThird}></View>
         </View>
@@ -39,7 +36,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: "row",
-        paddingVertical: 8,
+        paddingVertical: 10,
     },
     textTitle: {
         fontSize: 20,

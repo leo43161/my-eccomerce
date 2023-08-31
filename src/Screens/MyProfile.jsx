@@ -55,9 +55,7 @@ const MyProfile = ({ navigation }) => {
 
     const singOut = async () => {
         try {
-            console.log("Deleting session...");
             const response = await deleteSession(localId)
-            console.log("Session deleted: ")
             console.log(response)
             dispatch(logOut())
         } catch (error) {
@@ -95,8 +93,8 @@ const MyProfile = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.containerButtons}>
-                <ButtonProfile onPress={""} icon="user" title="My Profile" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
-                <ButtonProfile onPress={singOut} icon="list-alt" title="My Orders" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
+                <ButtonProfile onPress={() => ""} icon="user" title="My Profile" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
+                <ButtonProfile onPress={() => navigation.navigate('Orders')} icon="list-alt" title="My Orders" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
                 <ButtonProfile onPress={singOut} icon="sign-out" title="Logout" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
             </View>
         </View>

@@ -9,12 +9,13 @@ const LocationItem = ({ navigation, location }) => {
         <Pressable onPress={() => navigation.navigate("Location Selector")}>
             <Card additionalStyle={styles.card}>
                 <View style={styles.textContainer}>
-                    <Text style={styles.textPrice}>
+                    <Text style={styles.textLocation}>
                         {location.address}
                     </Text>
                 </View>
-                <View>
+                <View style={styles.changeContainer}>
                     <FontAwesome name="map-marker" size={30} color="black" />
+                    <Text>Change</Text>
                 </View>
             </Card>
         </Pressable>
@@ -43,10 +44,14 @@ const styles = StyleSheet.create({
         color: colors.dark,
         marginBottom: 5
     },
-    textPrice: {
+    textLocation: {
         fontFamily: "BROmega",
         fontSize: 19,
-        color: colors.secondary,
+        color: colors.dark,
         fontWeight: "bold",
     },
+    changeContainer: {
+        alignItems: "center",
+        gap: 5
+    }
 });
