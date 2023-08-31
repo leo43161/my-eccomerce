@@ -39,7 +39,8 @@ export const shopApi = createApi({
         getOrders: builder.query({
             query: (localId) => `orders/${localId}.json`,
             transformResponse: (response) => {
-                const ordersTransformed = Object.values(response);
+                console.log(response);
+                const ordersTransformed = response ? Object.values(response) : response;
                 return ordersTransformed
             }
         }),
