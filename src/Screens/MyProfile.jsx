@@ -1,5 +1,5 @@
 import { StyleSheet, Image, View, Text, Pressable } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { colors } from '../Global/Colors'
 import { FontAwesome } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +10,10 @@ import * as MediaLibrary from 'expo-media-library';
 import Card from '../Components/Card';
 import ButtonProfile from '../Components/ButtonProfile';
 import { deleteSession } from '../SQLite';
+import ModalImageChange from '../Components/ModalImageChange';
 
 const MyProfile = ({ navigation }) => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const dispatch = useDispatch();
     const [triggerSaveImage, resultSaveImage] = usePostProfileImageMutation()
     const { localId, profileImage, location } = useSelector(state => state.userReducer.value);
@@ -28,7 +30,13 @@ const MyProfile = ({ navigation }) => {
         return true;
     };
 
+    const onModalClose = () => {
+        setIsModalVisible(false);
+    };
+
     const cameraHandler = async () => {
+        setIsModalVisible(true);
+        return;
         const isCameraPermissed = await verifyCameraPermissions();
         const { status } = await MediaLibrary.requestPermissionsAsync();
         console.log(isCameraPermissed)
@@ -97,6 +105,9 @@ const MyProfile = ({ navigation }) => {
                 <ButtonProfile onPress={() => navigation.navigate('Orders')} icon="list-alt" title="My Orders" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
                 <ButtonProfile onPress={singOut} icon="sign-out" title="Logout" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
             </View>
+            <ModalImageChange isVisible={isModalVisible} onClose={onModalClose}>
+                <Text>Holisaisai</Text>
+            </ModalImageChange>
         </View>
     )
 }
