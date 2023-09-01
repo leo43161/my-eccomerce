@@ -4,6 +4,8 @@ import { FontAwesome } from '@expo/vector-icons';
 const ModalImageChange = ({ isVisible, children, onClose }) => {
     return (
         <Modal animationType="slide" transparent={true} visible={isVisible}>
+            <Pressable onPress={onClose} style={styles.exitBackground}>
+            </Pressable>
             <View style={styles.modalContent}>
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>Choose a sticker</Text>
@@ -20,14 +22,17 @@ const ModalImageChange = ({ isVisible, children, onClose }) => {
 export default ModalImageChange
 
 const styles = StyleSheet.create({
+    exitBackground: {
+        height: '75%',
+        width: '100%',
+        backgroundColor: "transparent",
+    },
     modalContent: {
         height: '25%',
         width: '100%',
-        backgroundColor: '#25292e',
+        backgroundColor: "white",
         borderTopRightRadius: 18,
         borderTopLeftRadius: 18,
-        position: 'absolute',
-        bottom: 0,
     },
     titleContainer: {
         height: '16%',

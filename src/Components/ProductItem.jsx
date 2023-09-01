@@ -20,7 +20,7 @@ const ProductItem = ({ item, navigation }) => {
                     <Image
                         resizeMode='contain'
                         style={styles.image}
-                        source={require('../Assets/Img/mueble2.png')}
+                        source={{ uri: item.images[0] }}
                     />
                 </View>
                 <View style={styles.infoContainer}>
