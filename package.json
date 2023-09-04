@@ -1,7 +1,14 @@
 {
-  "name": "desafio3",
+  "name": "furnit",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "description": "CLI that generates beautiful README.md files.",
+  "author": "Leonardo Palavecino",
+  "license": "MIT",
+  "engines": {
+    "npm": ">=9.8.1",
+    "node": ">=18.16.0"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",

@@ -12,6 +12,7 @@ const ProductItem = ({ item, navigation }) => {
         dispatch(setProductSelected(item));
         navigation.navigate('Product');
     }
+    const discount = (((item.price * item.discountPercentage) / 100) + item.price).toFixed(2);
     return (
         <Pressable onPress={onSelectProduct} style={[styles.cardContainer]}>
             <Card>
@@ -31,7 +32,7 @@ const ProductItem = ({ item, navigation }) => {
                     </Text>
                     <View style={styles.priceContainer}>
                         <Text style={styles.price}>${item.price}</Text>
-                        <Text style={styles.offer}>${item.discountPercentage}</Text>
+                        <Text style={styles.offer}>${discount}</Text>
                     </View>
                 </View>
             </Card>

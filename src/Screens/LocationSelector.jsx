@@ -13,7 +13,7 @@ const LocationSelector = ({navigation}) => {
     const [address, setAddress] = useState("");
     const [error, setError] = useState("");
 
-    const [triggerPostUserLocation, resultPostUserLocation] = usePostUserLocationMutation();
+    const [triggerPostUserLocation] = usePostUserLocationMutation();
     const { localId } = useSelector(state => state.userReducer.value)
     const dispatch = useDispatch();
 
