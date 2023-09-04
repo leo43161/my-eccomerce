@@ -23,8 +23,6 @@ const SignupScreen = ({ navigation }) => {
   const [triggerSignUp, result] = useSignUpMutation()
   const dispatch = useDispatch()
 
-  console.log(result);
-
   useEffect(() => {
     if (result.isSuccess) {
       dispatch(
@@ -60,7 +58,6 @@ const SignupScreen = ({ navigation }) => {
       else setErrorConfirmPassword('')
 
     } catch (err) {
-      console.log("Catch error");
       console.log(err.message);
     }
   };

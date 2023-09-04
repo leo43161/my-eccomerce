@@ -48,7 +48,7 @@ const AllCategories = ({ keyword, navigation }) => {
             />
           </View>
           :
-          <ScrollView style={styles.container}>
+          <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             {keyword === "" && <ProductHighlight></ProductHighlight>}
             {
               categories.map((category) =>
@@ -77,10 +77,10 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 5,
     flex: 1,
-    paddingVertical: 10,
     overflow: "hidden"
   },
   categoryContainer: {
+    paddingVertical: 10,
     marginBottom: 13
   },
   cardsContainer: {

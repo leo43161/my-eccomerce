@@ -7,14 +7,7 @@ import { useEffect } from 'react';
 
 export default function App() {
   useEffect(() => {
-    init().then( async(result) => {
-      console.log("Db initialized/dropped");
-      console.log(result);
-    })
-      .catch(err => {
-        console.log("Initialization DB failed:");
-        console.log(err.message);
-      })
+    init()
   }, [])
 
   const [fontsLoaded] = useFonts({

@@ -19,7 +19,6 @@ const ImageChange = () => {
     const cameraHandler = async () => { 
         const isCameraPermissed = await verifyCameraPermissions();
         const { status } = await MediaLibrary.requestPermissionsAsync();
-        console.log(isCameraPermissed)
         if (isCameraPermissed && status === "granted") {
             let resultShot = await ImagePicker.launchCameraAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -27,7 +26,6 @@ const ImageChange = () => {
                 aspect: [1, 1],
                 quality: 1
             })
-            console.log(resultShot.assets);
             if (!resultShot.canceled) {
                 const imagePick = resultShot.assets[0].uri
                 const response = await MediaLibrary.createAssetAsync(imagePick);
@@ -35,7 +33,6 @@ const ImageChange = () => {
                     image: response.uri,
                     localId: localId
                 });
-                console.log(response)
                 dispatch(saveImage(response.uri));
             }
         }

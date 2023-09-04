@@ -28,7 +28,6 @@ const LocationSelector = ({navigation}) => {
             localId,
             location: _location
         })
-        console.log(resultPostUserLocation)
         navigation.goBack();
     }
 
@@ -47,7 +46,6 @@ const LocationSelector = ({navigation}) => {
                     longitude: locationGps.coords.longitude,
                 });
             } catch (error) {
-                console.log(error.message);
                 setError(error.message)
             }
         })()

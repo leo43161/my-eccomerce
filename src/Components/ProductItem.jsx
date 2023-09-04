@@ -12,7 +12,6 @@ const ProductItem = ({ item, navigation }) => {
         dispatch(setProductSelected(item));
         navigation.navigate('Product');
     }
-
     return (
         <Pressable onPress={onSelectProduct} style={[styles.cardContainer]}>
             <Card>

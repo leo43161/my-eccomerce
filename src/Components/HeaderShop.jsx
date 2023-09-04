@@ -1,30 +1,9 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from '../Features/user/userSlice';
-import { deleteSession } from '../SQLite';
 import { colors } from '../Global/Colors';
 
 const Header = ({ route, navigation }) => {
-    const dispatch = useDispatch();
-    const { email, localId } = useSelector((state) => state.userReducer.value);
-    const routes = {
-        "Category": route.params ? route.params.category : "",
-        "Product": route.params ? route.params.title : "",
-    }
-    const singOut = async () => {
-        try {
-            console.log("Deleting session...");
-            const response = await deleteSession(localId)
-            console.log("Session deleted: ")
-            console.log(response)
-            dispatch(logOut())
-        } catch (error) {
-            console.log('Error while sign out:')
-            console.log(error.message);
-        }
-    }
     return (
         <View style={[styles.containerHeader, route.name === "Home" && styles.containerHome]}>
             {

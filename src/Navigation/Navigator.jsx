@@ -24,13 +24,11 @@ const Navigator = () => {
         (async () => {
             try {
                 const session = await getSession()
-                console.log(session)
                 if (session?.rows.length) {
                     const user = session.rows._array[0]
                     dispatch(setUser(user))
                 }
             } catch (error) {
-                console.log('Error getting session');
                 console.log(error.message);
             }
         })()

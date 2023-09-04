@@ -3,10 +3,8 @@ import React, { useState } from 'react'
 import { colors } from '../Global/Colors'
 import { FontAwesome } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetProfileImageQuery, useGetUserLocationQuery, usePostProfileImageMutation } from '../Services/shopServices';
-import * as ImagePicker from 'expo-image-picker';
-import { logOut, saveImage } from '../Features/user/userSlice';
-import * as MediaLibrary from 'expo-media-library';
+import { useGetProfileImageQuery, useGetUserLocationQuery } from '../Services/shopServices';
+import { logOut } from '../Features/user/userSlice';
 import Card from '../Components/Card';
 import ButtonProfile from '../Components/ButtonProfile';
 import { deleteSession } from '../SQLite';
@@ -15,59 +13,22 @@ import ModalImageChange from '../Components/ModalImageChange';
 const MyProfile = ({ navigation }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const dispatch = useDispatch();
-    const [triggerSaveImage, resultSaveImage] = usePostProfileImageMutation()
     const { localId, profileImage, location } = useSelector(state => state.userReducer.value);
     const { data: image } = useGetProfileImageQuery(localId);
     const { data: locationRemote } = useGetUserLocationQuery(localId);
     const imageUser = image?.image;
     const addressUser = locationRemote?.address || location?.address;
 
-    const verifyCameraPermissions = async () => {
-        const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-        if (!granted) {
-            return false;
-        }
-        return true;
-    };
 
     const onModalClose = () => {
         setIsModalVisible(false);
     };
 
-    const cameraHandler = async () => {
-        setIsModalVisible(true);
-        return;
-        const isCameraPermissed = await verifyCameraPermissions();
-        const { status } = await MediaLibrary.requestPermissionsAsync();
-        console.log(isCameraPermissed)
-        if (isCameraPermissed && status === "granted") {
-            let resultShot = await ImagePicker.launchCameraAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
-                aspect: [1, 1],
-                quality: 1
-            })
-            console.log(resultShot.assets);
-            if (!resultShot.canceled) {
-                const imagePick = resultShot.assets[0].uri
-                const response = await MediaLibrary.createAssetAsync(imagePick);
-                triggerSaveImage({
-                    image: response.uri,
-                    localId: localId
-                });
-                console.log(response)
-                dispatch(saveImage(response.uri));
-            }
-        }
-    };
-
     const singOut = async () => {
         try {
             const response = await deleteSession(localId)
-            console.log(response)
             dispatch(logOut())
         } catch (error) {
-            console.log('Error while sign out:')
             console.log(error.message);
         }
     }
@@ -105,9 +66,7 @@ const MyProfile = ({ navigation }) => {
                 <ButtonProfile onPress={() => navigation.navigate('Orders')} icon="list-alt" title="My Orders" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
                 <ButtonProfile onPress={singOut} icon="sign-out" title="Logout" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
             </View>
-            <ModalImageChange isVisible={isModalVisible} onClose={onModalClose}>
-                <Text>Holisaisai</Text>
-            </ModalImageChange>
+            <ModalImageChange isVisible={isModalVisible} onClose={onModalClose}></ModalImageChange>
         </View>
     )
 }
