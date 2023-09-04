@@ -24,14 +24,14 @@ const ProductItem = ({ item, navigation }) => {
                 </View>
                 <View style={styles.infoContainer}>
                     <Text numberOfLines={1} style={styles.titleProduct}>
-                        Silla de Oficina
+                        {item.title}
                     </Text>
                     <Text numberOfLines={2} style={styles.descriptionProduct}>
-                        Lorem ipsum dolor, sit amet consectetur
+                        {item.description}
                     </Text>
                     <View style={styles.priceContainer}>
-                        <Text style={styles.price}>$750.00</Text>
-                        <Text style={styles.offer}>$750.00</Text>
+                        <Text style={styles.price}>${item.price}</Text>
+                        <Text style={styles.offer}>${item.discountPercentage}</Text>
                     </View>
                 </View>
             </Card>

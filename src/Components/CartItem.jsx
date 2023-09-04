@@ -14,7 +14,7 @@ const CartItem = ({ cartItem }) => {
                     <Image
                         resizeMode='cover'
                         style={styles.image}
-                        source={require('../Assets/Img/mueble2.png')}
+                        source={{uri: cartItem.images[0]}}
                     />
                 </View>
                 <View style={styles.infoContainer}>

@@ -4,7 +4,7 @@ const updateTotal = (state) => {
     state.value.total = state.value.items.reduce(
         (acc, currentItem) => acc += currentItem.price * currentItem.quantity,
         0
-    )
+    ).toFixed(2);
 }
 
 export const cartSlice = createSlice({
@@ -59,9 +59,13 @@ export const cartSlice = createSlice({
                 return item
             })
             updateTotal(state);
+        },
+        removeCartItems: (state, action) => {
+            state.value.items = [];
+            updateTotal(state);
         }
     }
 });
 
-export const { addCartItem, removeCartItem, addItem, removeItem } = cartSlice.actions;
+export const { addCartItem, removeCartItem, addItem, removeItem, removeCartItems } = cartSlice.actions;
 export default cartSlice.reducer;

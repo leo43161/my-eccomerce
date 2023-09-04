@@ -44,7 +44,7 @@ const MyProfile = ({ navigation }) => {
                             style={styles.imageProfile}
                             resizeMode="cover"
                         />
-                        <Pressable onPress={cameraHandler} style={styles.buttonEditImage}>
+                        <Pressable onPress={() => setIsModalVisible(true)} style={styles.buttonEditImage}>
                             <FontAwesome name="camera" size={17} color="white" />
                         </Pressable>
                     </View>
@@ -62,7 +62,6 @@ const MyProfile = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.containerButtons}>
-                <ButtonProfile onPress={() => ""} icon="user" title="My Profile" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
                 <ButtonProfile onPress={() => navigation.navigate('Orders')} icon="list-alt" title="My Orders" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
                 <ButtonProfile onPress={singOut} icon="sign-out" title="Logout" color={colors.secondary} colorsIcon="#FFFFFF"></ButtonProfile>
             </View>

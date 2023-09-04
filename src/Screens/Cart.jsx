@@ -2,17 +2,20 @@ import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CartItem from '../Components/CartItem';
 import { colors } from '../Global/Colors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { usePostCartMutation } from '../Services/shopServices';
 import uuid from 'react-native-uuid';
+import { removeCartItems } from '../Features/cart/cartSlice';
 
 const Cart = ({ navigation }) => {
+  const dispatch = useDispatch()
   const { items: CartData, total, updatedAt, user } = useSelector(state => state.cartReducer.value);
   const { localId } = useSelector(state => state.userReducer.value);
   const [triggerPostCart] = usePostCartMutation();
   const onBuyHandler = () => {
     triggerPostCart({ order: { id: uuid.v4(), user, updatedAt, total, items: CartData }, localId }).then((response) => {
       if (response.data) {
+        dispatch(removeCartItems());
         navigation.navigate('Orders');
       }
     })

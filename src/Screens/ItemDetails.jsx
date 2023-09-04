@@ -11,6 +11,7 @@ const ItemDetails = () => {
   const [product, setProduct] = useState(null);
   const [imageProduct, setImageProduct] = useState("");
   const [imageGalery, setImageGalery] = useState([]);
+  const [quantity, setQuantity] = useState(1);
   useEffect(() => {
     //Encontrar el producto por su id
     const galleryFiltered = productSelected.images.filter((image) => image !== productSelected.images[0]);
@@ -22,7 +23,7 @@ const ItemDetails = () => {
   const onCart = () => {
     dispatch(addCartItem({
       ...product,
-      quantity: 1
+      quantity
     }))
   }
 
@@ -31,59 +32,80 @@ const ItemDetails = () => {
     setImageGalery(galleryFiltered);
     setImageProduct(imgSelected);
   }
-  return (
-    <ScrollView style={styles.container}>
-      {product ?
-        <View>
-          <View style={styles.imageContainer}>
-            <Image
-              resizeMode='cover'
-              style={styles.image}
-              source={{ uri: imageProduct }}
-            />
-            <View style={styles.galeryContainer}>
-              {imageGalery.map((image, idx) =>
-                <Pressable key={idx} onPress={() => galleryHandler(image)} style={styles.imageGaleryContainer}>
-                  <Image
-                    resizeMode='cover'
-                    style={styles.imageGalery}
-                    source={{ uri: image }}
-                  />
-                </Pressable>
-              )}
+  return product ? (
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image
+          resizeMode='contain'
+          style={styles.image}
+          source={{ uri: imageProduct }}
+        />
+        <View style={styles.galeryContainer}>
+          {imageGalery.map((image, idx) =>
+            <Pressable key={idx} onPress={() => galleryHandler(image)} style={styles.imageGaleryContainer}>
+              <Image
+                resizeMode='cover'
+                style={styles.imageGalery}
+                source={{ uri: image }}
+              />
+            </Pressable>
+          )}
+        </View>
+      </View>
+      <View style={styles.containerMain}>
+        <View style={styles.productContainer}>
+          <View>
+            <Text style={styles.title}>{product.title}</Text>
+            <View style={styles.titleContainer}>
+              <View style={[styles.rating]}>
+                <FontAwesome name="star" size={17} color="#FFA14B" />
+                <Text style={styles.textBold}>{product.rating}</Text>
+              </View>
+              <Text style={styles.price}>$ {product.price}</Text>
             </View>
           </View>
-          <View style={styles.productContainer}>
-            <View style={styles.categoryContainer}>
-              <Text style={styles.category}>{product.category}</Text>
-              <View style={[styles.like]}>
-                <FontAwesome name="heart" size={17} color={colors.primary} />
+          <Text style={styles.textBold}>Description</Text>
+          <View>
+            <Text numberOfLines={3} style={styles.description}>
+              {product.description}
+            </Text>
+          </View>
+
+          <View style={styles.containerBrandCart}>
+            <View style={styles.quantityContainer}>
+              <View style={styles.quantityCol}>
+                {quantity > 1 ?
+                  <Pressable style={[styles.buttonQuantity, styles.buttonMine]} onPress={() => { setQuantity(quantity - 1) }}>
+                    <FontAwesome name="minus" size={14} color="black" />
+                  </Pressable>
+                  : null
+                }
+              </View>
+              <View style={styles.quantityCol}>
+                <Text>{quantity}</Text>
+              </View>
+              <View style={styles.quantityCol}>
+                <Pressable style={[styles.buttonQuantity, styles.buttonPlus]} onPress={() => { setQuantity(quantity + 1) }}>
+                  <FontAwesome name="plus" size={14} color="black" />
+                </Pressable>
               </View>
             </View>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>{product.title}</Text>
-              <View style={[styles.rating]}>
-                <FontAwesome name="star" size={17} color="black" />
-                <Text>{product.rating}</Text>
-              </View>
+            <View>
+              <Text style={styles.brand}>{product.brand}</Text>
+              <Text style={styles.textBrand}>brand</Text>
             </View>
-            <Text style={styles.description}>{product.description}</Text>
-            <Text style={styles.price}>${product.price}</Text>
-            <View style={styles.buttonsContainer}>
-              <Pressable style={styles.buttonBuy}>
-                <Text style={[styles.buttonText, styles.buttonTextBuy]}>Comprar</Text>
-              </Pressable>
-              <Pressable onPress={onCart} style={styles.buttonCart}>
-                <FontAwesome name="shopping-cart" size={17} color="black" />
-                <Text style={styles.buttonText}>Carrito</Text>
-              </Pressable>
-            </View>
+          </View>
+
+          <View style={styles.buttonsContainer}>
+            <Pressable onPress={onCart} style={styles.buttonCart}>
+              <FontAwesome name="shopping-cart" size={17} color="#FFFFFF" />
+              <Text style={styles.buttonText}>Add to Cart</Text>
+            </Pressable>
           </View>
         </View>
-        : null
-      }
-    </ScrollView>
-  )
+      </View>
+    </View>
+  ) : <></>
 }
 
 export default ItemDetails
@@ -92,16 +114,54 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  containerMain: {
+    flex: 4,
+  },
+  imageContainer: {
+    width: "100%",
+    position: "relative",
+    flex: 3,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  containerBrandCart: {
+    flexDirection: "row",
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  quantityContainer: {
+    flexDirection: "row",
+    backgroundColor: colors.gray200,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingVertical: 3,
+    paddingHorizontal: 1,
+    width: "25%",
+    borderRadius: 15,
+  },
   image: {
-    width: '100%',
-    height: 340
+    width: "80%",
+    height: "90%",
   },
   title: {
-    fontSize: 25,
+    fontSize: 28,
     fontWeight: 'bold',
     maxWidth: "75%",
     fontFamily: "BROmega",
-    flexShrink: 1
+    flexShrink: 1,
+    marginBottom: 5
+  },
+  textBold: {
+    fontWeight: "bold",
+    fontSize: 18
+  },
+  brand: {
+    color: colors.primary,
+    fontWeight: "bold",
+    fontSize: 16
+  },
+  textBrand: {
+    fontSize: 12
   },
   category: {
     fontSize: 18,
@@ -114,20 +174,23 @@ const styles = StyleSheet.create({
     color: "white"
   },
   price: {
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 10,
   },
   description: {
-    fontSize: 15,
-    marginBottom: 10
+    fontSize: 16,
+    marginBottom: 10,
+    fontWeight: '600',
+    color: colors.gray300
   },
   productContainer: {
-    padding: 20
-  },
-  imageContainer: {
-    width: "100%",
-    position: "relative",
+    paddingVertical: 25,
+    paddingHorizontal: 30,
+    flex: 1,
+    borderTopLeftRadius: 33,
+    borderTopRightRadius: 33,
+    backgroundColor: "white",
+    justifyContent: "space-between"
   },
   galeryContainer: {
     position: "absolute",
@@ -158,54 +221,50 @@ const styles = StyleSheet.create({
   rating: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 3
-  },
-  like: {
-    borderRadius: 100,
-    borderWidth: 1,
-    padding: 9,
-    borderColor: colors.primary
+    gap: 5
   },
   titleContainer: {
     flexDirection: "row",
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10
-  },
-  categoryContainer: {
-    flexDirection: "row",
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 10
   },
   buttonsContainer: {
     flexDirection: "row",
     gap: 10,
-  },
-  buttonBuy: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: colors.primary,
-    borderRadius: 15,
-    paddingVertical: 15,
-    paddingVertical: 10
   },
   buttonCart: {
     flex: 1,
     flexDirection: "row",
     justifyContent: 'center',
     alignItems: "center",
-    borderWidth: 2,
     borderRadius: 15,
-    paddingVertical: 15,
-    paddingVertical: 10,
-    gap: 5
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    gap: 5,
+    backgroundColor: colors.primary
   },
   buttonText: {
     fontSize: 18,
     fontWeight: "bold",
+    color: "#FFFFFF"
   },
-  buttonTextBuy: {
-    color: "white",
-  }
+  quantityCol: {
+    flex: 1,
+    alignItems: "center"
+  },
+  buttonQuantity: {
+    backgroundColor: colors.primary,
+    paddingVertical: 5,
+    paddingHorizontal: 7,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonPlus: {
+    backgroundColor: colors.primary,
+  },
+  buttonMine: {
+    borderColor: colors.primary,
+    backgroundColor: "transparent",
+  },
 })

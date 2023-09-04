@@ -1,47 +1,47 @@
 [
     {
-        "id": 1,
-        "title": "Otoman Sofa",
-        "description": "",
-        "price": 0,
+        "brand": "FurnitureCo",
+        "category": "sofas",
+        "description": "Elegant and comfortable sofa for your living room.",
         "discountPercentage": 12,
+        "id": 1,
+        "images": [
+            "https://lh3.googleusercontent.com/pw/AIL4fc9dvB6pkuxZ4QZ70TlydhNx5kZ370lICke8_lysjR09aBsm9qzxZJWwNkm0YMtuF51SPszv8_xtySOf0EyZcHEn_QtJFQrgoC7pI6aDsw2b68ux5s_312os4JiXtHJKhEM2miwEVRTFpc12X7rQH0O5TZcYhAF2ornpuBfxhVaUjxck-vGmVZVOFOrCzd3iIBm3ZgRjpRCCtycYQyq_vOMeJ8deodFTHw4IBGzK72uHpBe8aFWd6yKC9PbDEhCP4HndTCuBvPKAoQAiKI8md2j_Dz9Ep4mNAT9Uu6Z7lvlhd9e9E4lMaHP5b1vsWw5I_1nv3RW30azru8nAigWSi4zldJg1Y6SFI3g3K679qRReEfvA6ld7ylTy58TQYWWH6DQZ0ZsVrB4U1nbqBS__hAV-FzWGcdMroPJJ_Juccb4r9EiAX__Nt449H3gudWHZCxPn-F3U9yuQqyfHGAQcMViG3pRt3AyVylg7wo_YH6u4XmpzFYMaUSpfnH1n4NQI-3KV1YqwwFstJ5xRasz89Cb_6WCIsiLrqIqX73RXUokF62K76xDnRtN5DLtjjQFVmY6ewY5YzBJwsE5QNQOtuN9Hx2D-9cfk2ymDBIMuQAe_mBxReSMJ5fDD3Ja_f0TOLmECYI3cspPXrD1Aljc8jYxpa9zVnaXXaKpkVKsWaXK4KzLX_iU9-Zj4DtDrEi3gY0AhTf_s0q5D6lEWvZ6XGuIlaLKjH6qDla7lcEEc4D58qdpHVWALnBS8oYZLhgiE-kgdIFQE3EvcbeecVy66nEnCh1qhxGNFqS-ERucQEwPXnIHhrPWYrkXp8w3x7bROcoQAARdAWyDOj9OH1g8L_GZwM8V25ZbrHY8YFbBPh51gn0XjNlnSp1Q2g-7Wftn-3myly2XgKl6LAIM3xCVEBZEEEJGteyrSfSO0WzSpTYV9ebiUC7llHyk1NeXVzhLPddRzdi__CtNBzqnTtEW8TBjteGI6xVw2=w598-h598-s-no?authuser=1"
+        ],
+        "price": 799.99,
         "rating": 4.5,
         "stock": 94,
-        "brand": "",
-        "category": "sofas",
         "thumbnail": "sofas-otomano.png",
-        "images": [
-            "sofas-otomano.png"
-        ]
+        "title": "Otoman Sofa"
     },
     {
-        "id": 2,
-        "title": "Deck Chair",
-        "description": "",
-        "price": 0,
+        "brand": "FurnitureCo",
+        "category": "recliners",
+        "description": "Relax in style with this comfortable deck chair.",
         "discountPercentage": 20,
+        "id": 2,
+        "images": [
+            "https://lh3.googleusercontent.com/pw/AIL4fc8dYVWao3aH_amp2OtM3y-A35NhOLj2CxDJ0psbuXVT-eyHfrLjOBwzZq4JWII_g7sCkG8dGcYnmBgtMDSCVRDq94AIA_8ccLs6FJXwDnBlgCz88YPUQUupxqmQxlOxPDchs6_V5cm5TLtH9x1ToI9rqiQIGSMKuJpOoLDpE5TzMgNnwvOjIrgXykD_6NuuR-F_Xe_nIB3jrg1vXiwr21Obp2hTwVwFhQQlAM6Lhc2170s7Xe7l-24UZxZe0vq_or83qsBEAa6yYmgNS2gDEfCEm8qjWau9wjTrUwMfzBhkPxpWI-bASuPvjrobcz-6eCHjudQBbDXhmVU8OJwEXximxSy_HbuyBhkmtQJpCS-FupWXls3MbR8VM-zUqQy5E6LuMAI73j79MaQKM3bm8t8-jtILzh52yCrGmEZdsdVkjPkdzkJeGXzFcpj59lzm5vczXMkVaVJSmJMWAJhOqt-90P58yIFUuieWSDRaNtmDjFecMeRNwgdQrPBlXbiwC1CEQu9-FHn1InjAa9TWDdDpvYEL2kdUyYWIm9cj3wlJE4mk-FwKEMP7kVA0yCRejrrNfgqUT_ynIoRr0CDWTwoJTjOW_bv0DqhECTfR1GjFDuUadshFeypNuvP1sgj1Yr666jnHwmJfZ_ZKIahffaesuRYwPkzCDyRGjFZ48zAEJQtSrRmRu7l0PlEPmb3pEPAY64xn4LiZxD1_Tvuwi59naA9MD5wMUMdpEnDdGUWQlxd4s8dE6MzIYwj1bkt8fU7QZUBJGl1AF-i6qo-jqbOP8X8Lzn5_eWekBTbZPt-hfi80szQ_AUu9JNPYD2KPukdppS29UERamDR3-9UmvqzyIb49lsYum0Ikpa57pFEN2n-AkHaPtmJ5aYK-M40tnCv2cwWZ_b7gKZRRea29ulfIN_ISvVIJScOGtWDorg4LATmf8ocfBhop0ZKO2SikfwYTCLoY87GWwVjuXcoiBFjGi0QsRDjf=w900-h605-s-no?authuser=1"
+        ],
+        "price": 499.99,
         "rating": 5,
         "stock": 94,
-        "brand": "",
-        "category": "recliners",
         "thumbnail": "dech-chair.png",
-        "images": [
-            "dech-chair.png"
-        ]
+        "title": "Deck Chair"
     },
     {
-        "id": 3,
-        "title": "Garder Recliner",
-        "description": "",
-        "price": 0,
+        "brand": "FurnitureCo",
+        "category": "recliners",
+        "description": "Enjoy the outdoors with this garden recliner.",
         "discountPercentage": 20,
+        "id": 3,
+        "images": [
+            "https://lh3.googleusercontent.com/pw/AIL4fc_XRXRgg8EKusRrqBkBcTpxFqu83AgmYDlrAg-uDQlmbZjorw9RGodlNwJu4Kg72Mdy2OFl2XxUhr1opnF9-plhAMVGhU8YwWmxbgZ_iWIOPLLHOMqsKPpRxNgB7GxikX3S-fI5zbWKmOvzgwiCyoXAKW49xiQXmDVwoo7jEevyXoB2XtYbB-BR3gPNJMivXmpnNCKMTjaR2rW4Q-_fy4YPA_S5YLl6rLU1EQxt_JLkfqwFbqPiz57E27Rwe_pQ96Q4ThimpqPlY8dNqogRUBpyIrKuoRX7PkYNMMslO_oUq1vsD9HQLsxYfVgRrpw10FRg9pO2H5rv5MWWAdfjC5edgj5vHBQIyZrj9rYZcPj8PbOP65ZTAElhgCZu7bVjyVk5De1vgxemGb9V--NHMdXC8hK7UoZx-IXeojA5__LuXHvGbbL-PKsQYoLd5fMiGdJO0IVqe9a5T6KYCtcnTrsHoLCAqJTBGRc6_tUnaL-iT-tfFlcWEqmUkCYsIxPlESuX8E-OxMpBKZUFW6MPcvkRDrR6BbMEuNhd6loTqR53iWGVDohZrylOgEYLtcrU1VbUGXNtYaBz8YcG4x7PPYRZTAojrN48fOGN4y1K4vVVPAkdsYnEsdcA8UDJUJhjdf7rzoR3J0ocOuZc1Pb0a1oMcPucEEpvJ6YfHDRXPrr-ouxJ7BzZaxnejQoZAuem9AKu5jGZar6hX8953LY2WLRBKlIf_GDrs5QtOPhOPBqf3hj3xCiJZneyhK76X2U9o7a31jJ9_awMfGeDiyhIEVAMSNVRTAh9doMBrujE_LPjHDLQ4mhUjQrLv6TMZjvmXMwkPc0uz53rHKaXdmyUyRSAebBQyiLo9pvvdhPeDGKI0heRvlUOKkSYFsM-osAbSDYzTzy0AMyHwRkwYvVL_n1fUXKLQwJwxBxzGRylCcECanN2C7wxudOkuozoal77AuxdnmlMZcY5nF-aI1kDE-I2Ab-RUC0h=w800-h788-s-no?authuser=1"
+        ],
+        "price": 649.99,
         "rating": 4,
         "stock": 94,
-        "brand": "",
-        "category": "recliners",
         "thumbnail": "recliners-garden.png",
-        "images": [
-            "recliners-garden.png"
-        ]
+        "title": "Garder Recliner"
     }
 ]
