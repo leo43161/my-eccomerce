@@ -2,8 +2,10 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
+import { useSelector } from 'react-redux';
 
 const Header = ({ route, navigation }) => {
+    const { email } = useSelector(state => state.userReducer.value);
     return (
         <View style={[styles.containerHeader, route.name === "Home" && styles.containerHome]}>
             {
@@ -15,7 +17,7 @@ const Header = ({ route, navigation }) => {
                     </View>
                     :
                     <View style={styles.container}>
-                        <Text style={styles.textTitle}>Hello, Angel!</Text>
+                        <Text style={styles.textTitle}>Hello, {email}</Text>
                         <Text style={styles.textSubtitle}>What do you want to order today?</Text>
                     </View>
             }

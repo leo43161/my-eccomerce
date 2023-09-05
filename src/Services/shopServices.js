@@ -29,6 +29,13 @@ export const shopApi = createApi({
                 return categoriesWithMatchingProducts;
             },
         }),
+        getProductHighlight: builder.query({
+            query: () => `products.json?orderBy="discountPercentage"&limitToLast=1`,
+            transformResponse: (response) => {
+                const productTransformed = Object.values(response).pop()
+                return (productTransformed)
+            }
+        }),
 
         getCategories: builder.query({
             query: () => 'categories.json'
@@ -58,7 +65,7 @@ export const shopApi = createApi({
             }
         }),
         postCart: builder.mutation({
-            query: ({order, localId}) => ({
+            query: ({ order, localId }) => ({
                 url: `orders/${localId}.json`,
                 method: `POST`,
                 body: order
@@ -104,5 +111,6 @@ export const {
     useGetUserLocationQuery,
     usePostUserLocationMutation,
     useGetCategoriesWithProductsQuery,
-    useGetOrdersQuery
+    useGetOrdersQuery,
+    useGetProductHighlightQuery
 } = shopApi

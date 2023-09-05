@@ -49,7 +49,7 @@ const AllCategories = ({ keyword, navigation }) => {
           </View>
           :
           <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-            {keyword === "" && <ProductHighlight></ProductHighlight>}
+            {keyword === "" && <ProductHighlight navigation={navigation}></ProductHighlight>}
             {
               categories.map((category) =>
                 <View key={category.id} style={styles.categoryContainer}>

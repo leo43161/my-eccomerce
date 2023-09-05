@@ -1,34 +1,46 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, ActivityIndicator, Pressable } from 'react-native'
 import React from 'react'
 import { colors } from '../Global/Colors'
+import { useGetProductHighlightQuery } from '../Services/shopServices';
+import { useDispatch } from 'react-redux';
+import { setProductSelected } from '../Features/shop/shopSlice';
 
-const ProductHighlight = ({additionalStyle = []}) => {
+const ProductHighlight = ({ additionalStyle = [], navigation }) => {
+    const dispatch = useDispatch();
+    const { data: product, isLoading, isError } = useGetProductHighlightQuery();
+    const onSelectProduct = () => {
+        dispatch(setProductSelected(product));
+        navigation.navigate('Product');
+    }
     return (
-        <View style={[styles.containerCardHeader, additionalStyle]}>
-            <View style={styles.cardHeader}>
-                <View style={styles.containerContainCard}>
-                    <View style={{
-                        flexDirection: "row"
-                    }}>
-                        <View style={styles.pill}>
-                            <Text style={styles.textOff}>20% Off</Text>
+        isLoading ? <ActivityIndicator size={55} color={colors.secondary} /> :
+            !isError ?
+                <Pressable onPress={onSelectProduct} style={[styles.containerCardHeader, additionalStyle]}>
+                    <View style={styles.cardHeader}>
+                        <View style={styles.containerContainCard}>
+                            <View style={{
+                                flexDirection: "row"
+                            }}>
+                                <View style={styles.pill}>
+                                    <Text style={styles.textOff}>{product.discountPercentage}% Off</Text>
+                                </View>
+                            </View>
+                            <Text style={styles.textTitle}>{product.title}</Text>
+                            <Text style={styles.textDescription} numberOfLines={2}>{product.description}</Text>
+                            <Text style={styles.textMore}>Mas...</Text>
+                        </View>
+                        <View style={styles.containerImgCard}>
+                            <View style={styles.imageWrapper}>
+                                <Image
+                                    resizeMode='cover'
+                                    style={styles.image}
+                                    source={{ uri: product.images[0] }}
+                                />
+                            </View>
                         </View>
                     </View>
-                    <Text style={styles.textTitle}>Best deals</Text>
-                    <Text style={styles.textDescription} numberOfLines={2}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum qui quidem rem necessitatibus debitis.</Text>
-                    <Text style={styles.textMore}>Mas...</Text>
-                </View>
-                <View style={styles.containerImgCard}>
-                    <View style={styles.imageWrapper}>
-                        <Image
-                            resizeMode='cover'
-                            style={styles.image}
-                            source={require('../Assets/Img/mueble2.png')}
-                        />
-                    </View>
-                </View>
-            </View>
-        </View>
+                </Pressable>
+                : null
     )
 }
 

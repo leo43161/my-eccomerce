@@ -11,7 +11,6 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         value: {
-            user: "Usuario Hard",
             updatedAt: "",
             total: null,
             items: []
